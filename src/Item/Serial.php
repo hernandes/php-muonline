@@ -3,16 +3,18 @@ namespace MuOnline\Item;
 
 class Serial
 {
-
     use ItemSetTrait;
 
+    /**
+     * @var string
+     */
     private $value;
 
     /**
      * @param string $value
      * @return $this
      */
-    public function set(string $value) : self
+    public function set(string $value): self
     {
         $this->value = $value;
 
@@ -22,15 +24,15 @@ class Serial
     /**
      * @return string
      */
-    public function get() : string
+    public function get(): string
     {
-        return $this->serial;
+        return $this->value;
     }
 
     /**
      * @return string
      */
-    public function generate() : string
+    public function generate(): string
     {
         $serial = rand(100001, 999999);
 

@@ -30,7 +30,7 @@ class Ancient
      * @param int $type
      * @return $this
      */
-    public function setType(int $type) : self
+    public function setType(int $type): self
     {
         $this->type = $type;
 
@@ -40,7 +40,7 @@ class Ancient
     /**
      * @return int
      */
-    public function getType() : int
+    public function getType(): int
     {
         return $this->type;
     }
@@ -49,7 +49,7 @@ class Ancient
      * @param int $stamina
      * @return $this
      */
-    public function setStamina(int $stamina) : self
+    public function setStamina(int $stamina): self
     {
         $this->stamina = $stamina;
 
@@ -69,7 +69,7 @@ class Ancient
      * @param int $stamina
      * @return $this
      */
-    public function add(int $type, int $stamina = self::STAMINA_5) : self
+    public function add(int $type, int $stamina = self::STAMINA_5): self
     {
         $this->type = $type;
         $this->stamina = $stamina;

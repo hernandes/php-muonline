@@ -16,7 +16,7 @@ $item->generateSerial();
 $item->make(new \MuOnline\Item\Maker\DefaultMaker());
 
 $item2 = new \MuOnline\Item\Item();
-$item2->parse(new \MuOnline\Item\Parser\DefaultParser('abc'));
+(new \MuOnline\Item\Parser\DefaultParser('abc'))->parse($item2);
 
 echo '<pre>';
 print_r($item2);
