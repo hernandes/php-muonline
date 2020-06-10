@@ -15,7 +15,7 @@ class Durability
      */
     private $value;
 
-    public function __construct($value = 0)
+    public function __construct(int $value = 0)
     {
         $this->value = $value;
     }

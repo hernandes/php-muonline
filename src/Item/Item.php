@@ -10,6 +10,10 @@ use MuOnline\Item\Excellent\Slot as ExcellentSlot;
  */
 class Item
 {
+    /**
+     * @var string
+     */
+    private $hex;
 
     /**
      * @var int
@@ -84,10 +88,29 @@ class Item
     }
 
     /**
+     * @param string $hex
+     * @return $this
+     */
+    public function setHex(string $hex): self
+    {
+        $this->hex = $hex;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHex(): ?string
+    {
+        return $this->hex;
+    }
+
+    /**
      * @param int $section
      * @return $this
      */
-    public function setSection(int $section) : self
+    public function setSection(int $section): self
     {
         $this->section = $section;
 
@@ -97,7 +120,7 @@ class Item
     /**
      * @return int|null
      */
-    public function getSection() : ?int
+    public function getSection(): int
     {
         return $this->section;
     }
@@ -106,7 +129,7 @@ class Item
      * @param int $index
      * @return $this
      */
-    public function setIndex(int $index) : self
+    public function setIndex(int $index): self
     {
         $this->index = $index;
 
@@ -116,7 +139,7 @@ class Item
     /**
      * @return int|null
      */
-    public function getIndex() : ?int
+    public function getIndex(): int
     {
         return $this->index;
     }
@@ -125,7 +148,7 @@ class Item
      * @param int $level
      * @return $this
      */
-    public function setLevel(int $level) : self
+    public function setLevel(int $level): self
     {
         $this->level = $level;
 
@@ -135,7 +158,7 @@ class Item
     /**
      * @return int
      */
-    public function getLevel() : int
+    public function getLevel(): int
     {
         return $this->level;
     }
@@ -144,7 +167,7 @@ class Item
      * @param int $levels
      * @return $this
      */
-    public function addLevel(int $levels = 1) : self
+    public function addLevel(int $levels = 1): self
     {
         $this->level += $levels;
 
@@ -155,7 +178,7 @@ class Item
      * @param int $option
      * @return $this
      */
-    public function setOption(int $option) : self
+    public function setOption(int $option): self
     {
         $this->option = $option;
 
@@ -165,16 +188,16 @@ class Item
     /**
      * @return int
      */
-    public function getOption() : int
+    public function getOption(): int
     {
         return $this->option;
     }
 
     /**
      * @param int $options
-     * @return int
+     * @return $this
      */
-    public function addOption(int $options = 4) : self
+    public function addOption(int $options = 4): self
     {
         $this->option += $options;
 
@@ -185,7 +208,7 @@ class Item
      * @param Luck $luck
      * @return $this
      */
-    public function setLuck(Luck $luck) : self
+    public function setLuck(Luck $luck): self
     {
         $this->luck = $luck->setItem($this);
 
@@ -195,7 +218,7 @@ class Item
     /**
      * @return Luck
      */
-    public function getLuck() : Luck
+    public function getLuck(): Luck
     {
         return $this->luck;
     }
@@ -203,7 +226,7 @@ class Item
     /**
      * @return $this
      */
-    public function addLuck() : self
+    public function addLuck(): self
     {
         if (! $this->luck) {
             $this->luck = (new Luck())->setItem($this);
@@ -218,7 +241,7 @@ class Item
      * @param $skill
      * @return $this
      */
-    public function setSkill(Skill $skill) : self
+    public function setSkill(Skill $skill): self
     {
         $this->skill = $skill->setItem($this);
 
@@ -228,7 +251,7 @@ class Item
     /**
      * @return Skill
      */
-    public function getSkill() : Skill
+    public function getSkill(): Skill
     {
         return $this->skill;
     }
@@ -236,7 +259,7 @@ class Item
     /**
      * @return $this
      */
-    public function addSkill() : self
+    public function addSkill(): self
     {
         if (! $this->skill) {
             $this->skill = (new Skill())->setItem($this);
@@ -251,7 +274,7 @@ class Item
      * @param Durability|int $durability
      * @return $this
      */
-    public function setDurability($durability) : self
+    public function setDurability($durability): self
     {
         if (! $durability instanceof Durability) {
             $durability = new Durability($durability);
@@ -265,7 +288,7 @@ class Item
     /**
      * @return Durability
      */
-    public function getDurability() : Durability
+    public function getDurability(): Durability
     {
         return $this->durability;
     }
@@ -274,7 +297,7 @@ class Item
      * @param Ancient $ancient
      * @return $this
      */
-    public function setAncient(Ancient $ancient) : self
+    public function setAncient(Ancient $ancient): self
     {
         $this->ancient = $ancient->setItem($this);
 
@@ -284,7 +307,7 @@ class Item
     /**
      * @return Ancient
      */
-    public function getAncient() : Ancient
+    public function getAncient(): Ancient
     {
         return $this->ancient;
     }
@@ -294,7 +317,7 @@ class Item
      * @param int $stamina
      * @return $this
      */
-    public function addAncient(int $type, int $stamina = Ancient::STAMINA_5) : self
+    public function addAncient(int $type, int $stamina = Ancient::STAMINA_5): self
     {
         if (! $this->ancient) {
             $this->ancient = (new Ancient())->setItem($this);
@@ -309,7 +332,7 @@ class Item
      * @param Serial $serial
      * @return $this
      */
-    public function setSerial(Serial $serial) : self
+    public function setSerial(Serial $serial): self
     {
         $this->serial = $serial->setItem($this);
 
@@ -319,7 +342,7 @@ class Item
     /**
      * @return Serial
      */
-    public function getSerial() : Serial
+    public function getSerial(): Serial
     {
         return $this->serial;
     }
@@ -327,7 +350,7 @@ class Item
     /**
      * @return $this
      */
-    public function generateSerial() : self
+    public function generateSerial(): self
     {
         if (! $this->serial) {
             $this->serial = (new Serial())->setItem($this);
@@ -342,7 +365,7 @@ class Item
      * @param Excellent $excellent
      * @return $this
      */
-    public function setExcellent(Excellent $excellent) : self
+    public function setExcellent(Excellent $excellent): self
     {
         $this->excellent = $excellent->setItem($this);
 
@@ -352,7 +375,7 @@ class Item
     /**
      * @return Excellent
      */
-    public function getExcellent() : Excellent
+    public function getExcellent(): Excellent
     {
         return $this->excellent;
     }
@@ -362,7 +385,7 @@ class Item
      * @param $slot
      * @return $this
      */
-    public function addExcellentInSlot($index, $slot) : self
+    public function addExcellentInSlot(int $index, bool $slot = true): self
     {
         if (! $this->excellent) {
             $this->excellent = (new Excellent())->setItem($this);
@@ -381,7 +404,7 @@ class Item
      * @param Harmony $harmony
      * @return $this
      */
-    public function setHarmony(Harmony $harmony) : self
+    public function setHarmony(Harmony $harmony): self
     {
         $this->harmony = $harmony->setItem($this);
 
@@ -391,7 +414,7 @@ class Item
     /**
      * @return Harmony
      */
-    public function getHarmony() : Harmony
+    public function getHarmony(): Harmony
     {
         return $this->harmony;
     }
@@ -401,7 +424,7 @@ class Item
      * @param int $level
      * @return $this
      */
-    public function addHarmony(int $type = 0, int $level = 0) : self
+    public function addHarmony(int $type = 0, int $level = 0): self
     {
         if (! $this->harmony) {
             $this->harmony = (new Harmony())->setItem($this);
@@ -416,7 +439,7 @@ class Item
      * @param bool $refine
      * @return $this
      */
-    public function setRefine(bool $refine) : self
+    public function setRefine(bool $refine): self
     {
         $this->refine = $refine;
 
@@ -426,7 +449,7 @@ class Item
     /**
      * @return bool
      */
-    public function getRefine() : bool
+    public function getRefine(): bool
     {
         return $this->refine;
     }
@@ -434,7 +457,7 @@ class Item
     /**
      * @return $this
      */
-    public function addRefine() : self
+    public function addRefine(): self
     {
         return $this->setRefine(true);
     }
@@ -443,7 +466,7 @@ class Item
      * @param Sockets $sockets
      * @return $this
      */
-    public function setSockets(Sockets $sockets) : self
+    public function setSockets(Sockets $sockets): self
     {
         $this->sockets = $sockets->setItem($this);
 
@@ -453,7 +476,7 @@ class Item
     /**
      * @return Sockets
      */
-    public function getSockets() : Sockets
+    public function getSockets(): Sockets
     {
         return $this->sockets;
     }
@@ -463,7 +486,7 @@ class Item
      * @param $slot
      * @return $this
      */
-    public function addSocketInSlot($index, $slot) : self
+    public function addSocketInSlot(int $index, bool $slot): self
     {
         if (! $this->sockets) {
             $this->sockets = (new Sockets())->setItem($this);
@@ -478,22 +501,22 @@ class Item
         return $this;
     }
 
-    /**
-     * @param string $hex
-     * @return $this
-     */
-    public function parse(?string $hex = null) : self
+    public function parse(Parser $parser): self
     {
+        $parser->parse($this);
 
         return $this;
     }
 
     /**
+     * @param Maker $maker
      * @return string
      */
-    public function make() : string
+    public function make(Maker $maker): string
     {
+        $hex = $maker->make($this);
+        $this->setHex($hex);
 
-        return '';
+        return $hex;
     }
 }
