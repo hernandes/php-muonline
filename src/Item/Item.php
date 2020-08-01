@@ -99,7 +99,7 @@ class Item
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getHex(): ?string
     {
@@ -118,7 +118,7 @@ class Item
     }
 
     /**
-     * @return int|null
+     * @return int
      */
     public function getSection(): int
     {
@@ -137,7 +137,7 @@ class Item
     }
 
     /**
-     * @return int|null
+     * @return int
      */
     public function getIndex(): int
     {
@@ -382,10 +382,10 @@ class Item
 
     /**
      * @param $index
-     * @param $slot
+     * @param ExcellentSlot|bool $slot
      * @return $this
      */
-    public function addExcellentInSlot(int $index, bool $slot = true): self
+    public function addExcellentInSlot(int $index, $slot): self
     {
         if (! $this->excellent) {
             $this->excellent = (new Excellent())->setItem($this);
@@ -482,11 +482,11 @@ class Item
     }
 
     /**
-     * @param $index
-     * @param $slot
+     * @param int $index
+     * @param SocketSlot|bool $slot
      * @return $this
      */
-    public function addSocketInSlot(int $index, bool $slot): self
+    public function addSocketInSlot(int $index, $slot): self
     {
         if (! $this->sockets) {
             $this->sockets = (new Sockets())->setItem($this);
@@ -501,6 +501,10 @@ class Item
         return $this;
     }
 
+    /**
+     * @param Parser $parser
+     * @return $this
+     */
     public function parse(Parser $parser): self
     {
         $parser->parse($this);

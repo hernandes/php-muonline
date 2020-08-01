@@ -3,7 +3,6 @@ namespace MuOnline\Item\Sockets;
 
 class Slot
 {
-
     /**
      * @var int
      */

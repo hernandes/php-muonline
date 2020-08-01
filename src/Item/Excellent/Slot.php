@@ -18,7 +18,7 @@ class Slot
      * @param bool $value
      * @return Slot
      */
-    public function set(bool $value = false) : self
+    public function set(bool $value = false): self
     {
         $this->value = $value;
 
@@ -28,7 +28,7 @@ class Slot
     /**
      * @return bool
      */
-    public function has()
+    public function has(): bool
     {
         return $this->value;
     }
@@ -37,7 +37,7 @@ class Slot
      * @param bool $value
      * @return Slot
      */
-    public function add(bool $value = true) : self
+    public function add(bool $value = true): self
     {
         $this->value = $value;
 
