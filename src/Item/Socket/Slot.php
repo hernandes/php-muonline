@@ -1,5 +1,5 @@
 <?php
-namespace MuOnline\Item\Sockets;
+namespace MuOnline\Item\Socket;
 
 class Slot
 {

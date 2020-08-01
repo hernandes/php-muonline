@@ -1,10 +1,10 @@
 <?php
 namespace MuOnline\Item;
 
-use MuOnline\Item\Sockets\Bonus;
-use MuOnline\Item\Sockets\Slot;
+use MuOnline\Item\Socket\Bonus;
+use MuOnline\Item\Socket\Slot;
 
-class Sockets
+class Socket
 {
 
     use ItemSetTrait;

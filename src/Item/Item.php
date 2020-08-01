@@ -1,7 +1,7 @@
 <?php
 namespace MuOnline\Item;
 
-use MuOnline\Item\Sockets\Slot as SocketSlot;
+use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
 
 /**
@@ -76,9 +76,9 @@ class Item
     private $harmony;
 
     /**
-     * @var Sockets
+     * @var Socket
      */
-    private $sockets;
+    private $socket;
 
 
     public function __construct(int $section = null, int $index = null)
@@ -463,22 +463,22 @@ class Item
     }
 
     /**
-     * @param Sockets $sockets
+     * @param Socket $socket
      * @return $this
      */
-    public function setSockets(Sockets $sockets): self
+    public function setSockets(Socket $socket): self
     {
-        $this->sockets = $sockets->setItem($this);
+        $this->socket = $socket->setItem($this);
 
         return $this;
     }
 
     /**
-     * @return Sockets
+     * @return Socket
      */
-    public function getSockets(): Sockets
+    public function getSockets(): Socket
     {
-        return $this->sockets;
+        return $this->socket;
     }
 
     /**
@@ -488,15 +488,15 @@ class Item
      */
     public function addSocketInSlot(int $index, $slot): self
     {
-        if (! $this->sockets) {
-            $this->sockets = (new Sockets())->setItem($this);
+        if (! $this->socket) {
+            $this->socket = (new Socket())->setItem($this);
         }
 
         if (! $slot instanceof SocketSlot) {
             $slot = new SocketSlot($slot);
         }
 
-        $this->sockets->add($index, $slot);
+        $this->socket->add($index, $slot);
 
         return $this;
     }
