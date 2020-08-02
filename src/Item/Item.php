@@ -66,9 +66,9 @@ class Item
     private $ancient;
 
     /**
-     * @var bool
+     * @var Refine
      */
-    private $refine = false;
+    private $refine;
 
     /**
      * @var Harmony
@@ -436,10 +436,10 @@ class Item
     }
 
     /**
-     * @param bool $refine
+     * @param Refine $refine
      * @return $this
      */
-    public function setRefine(bool $refine): self
+    public function setRefine(Refine $refine): self
     {
         $this->refine = $refine;
 
@@ -447,9 +447,9 @@ class Item
     }
 
     /**
-     * @return bool
+     * @return Refine
      */
-    public function getRefine(): bool
+    public function getRefine(): Refine
     {
         return $this->refine;
     }
@@ -459,7 +459,13 @@ class Item
      */
     public function addRefine(): self
     {
-        return $this->setRefine(true);
+        if (! $this->refine) {
+            $this->refine = (new Refine())->setItem($this);
+        }
+
+        $this->refine->add();
+
+        return $this;
     }
 
     /**

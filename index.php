@@ -11,6 +11,7 @@ $item->addAncient(1, 5);
 $item->addHarmony(20, 40);
 $item->addLuck();
 $item->addRefine();
+$item->addRefine();
 $item->generateSerial();
 
 $item->make(new \MuOnline\Item\Maker\DefaultMaker());
