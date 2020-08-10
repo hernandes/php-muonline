@@ -81,7 +81,7 @@ class Item
     private $socket;
 
 
-    public function __construct(int $section = null, int $index = null)
+    public function __construct(?int $section = null, ?int $index = null)
     {
         $this->section = $section;
         $this->index = $index;
@@ -118,9 +118,9 @@ class Item
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getSection(): int
+    public function getSection(): ?int
     {
         return $this->section;
     }
@@ -137,9 +137,9 @@ class Item
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getIndex(): int
+    public function getIndex(): ?int
     {
         return $this->index;
     }
