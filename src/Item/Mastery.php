@@ -1,35 +1,17 @@
 <?php
 namespace MuOnline\Item;
 
-use MuOnline\Item\Socket\Bonus;
-use MuOnline\Item\Socket\Slot;
+use MuOnline\Item\Mastery\Bonus;
 
-class Socket
+class Mastery
 {
 
     use ItemSetTrait;
 
     /**
-     * @var array<Slot>
-     */
-    private $slots = [];
-
-    /**
      * @var Bonus
      */
     private $bonus;
-
-    /**
-     * @param $position
-     * @param Slot $slot
-     * @return $this
-     */
-    public function add($position, Slot $slot) : self
-    {
-        $this->slots[$position] = $slot;
-
-        return $this;
-    }
 
     /**
      * @param Bonus $bonus

@@ -80,6 +80,11 @@ class Item
      */
     private $socket;
 
+    /**
+     * @var Mastery
+     */
+    private $mastery;
+
 
     public function __construct(?int $section = null, ?int $index = null)
     {
@@ -505,6 +510,25 @@ class Item
         $this->socket->add($index, $slot);
 
         return $this;
+    }
+
+    /**
+     * @param Mastery $mastery
+     * @return $this
+     */
+    public function setMastery(Mastery $mastery): self
+    {
+        $this->mastery = $mastery;
+
+        return $this;
+    }
+
+    /**
+     * @return Mastery
+     */
+    public function getMastery(): Mastery
+    {
+        return $this->mastery;
     }
 
     /**
