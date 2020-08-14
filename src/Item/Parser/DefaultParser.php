@@ -1,6 +1,7 @@
 <?php
 namespace MuOnline\Item\Parser;
 
+use MuOnline\Item\Durability;
 use MuOnline\Item\Item;
 
 class DefaultParser extends AbstractParser
@@ -14,5 +15,8 @@ class DefaultParser extends AbstractParser
     {
         $hex = $this->getHex();
 
+
+        $item->setSection(10);
+        $item->setDurability(new Durability(255));
     }
 }

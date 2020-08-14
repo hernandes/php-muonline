@@ -6,10 +6,6 @@ use MuOnline\Item\Parser\DefaultParser;
 use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
 
-/**
- * Class Item
- * @package MuOnline\Item
- */
 class Item
 {
     /**
@@ -548,7 +544,7 @@ class Item
             $parser = new DefaultParser($hex);
         }
 
-        $parser->parse($this);
+        $parser->setHex($hex)->parse($this);
 
         return $this;
     }
@@ -563,9 +559,8 @@ class Item
             $maker = new DefaultMaker();
         }
 
-        $hex = $maker->make($this);
-        $this->setHex($hex);
+        $this->setHex($maker->make($this));
 
-        return $hex;
+        return $this->getHex();
     }
 }

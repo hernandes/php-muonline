@@ -1,8 +1,6 @@
 <?php
 namespace MuOnline\Item;
 
-use MuOnline\Item\ItemSetTrait;
-
 class Ancient
 {
     use ItemSetTrait;

@@ -19,6 +19,4 @@ $item->make(new \MuOnline\Item\Maker\DefaultMaker());
 $item2 = new \MuOnline\Item\Item();
 $item2->parse('abc', new \MuOnline\Item\Parser\DefaultParser());
 
-echo '<pre>';
-print_r($item2);
-echo '</pre>';
+dump($item2);

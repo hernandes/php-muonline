@@ -11,7 +11,7 @@ abstract class AbstractParser implements Parser
      */
     private $hex;
 
-    public function __construct($hex)
+    public function __construct($hex = null)
     {
         $this->hex = $hex;
     }

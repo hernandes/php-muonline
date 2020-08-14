@@ -1,10 +1,6 @@
 <?php
 namespace MuOnline\Item;
 
-/**
- * Class Durability
- * @package MuOnline\Item
- */
 class Durability
 {
 

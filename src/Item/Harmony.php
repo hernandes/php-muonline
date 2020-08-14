@@ -60,8 +60,8 @@ class Harmony
     }
 
     /**
-     * @param int $type
-     * @param int $level
+     * @param int|null $type
+     * @param int|null $level
      * @return $this
      */
     public function add(?int $type = null, ?int $level = null) : self
