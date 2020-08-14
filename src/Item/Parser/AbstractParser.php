@@ -35,6 +35,10 @@ abstract class AbstractParser implements Parser
         return $this->hex;
     }
 
+    /**
+     * @param Item $item
+     * @return mixed|void
+     */
     public function parse(Item $item)
     {
         throw new \BadMethodCallException('Method parse not implemented yet!');

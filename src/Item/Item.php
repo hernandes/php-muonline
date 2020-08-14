@@ -1,6 +1,8 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Item\Maker\DefaultMaker;
+use MuOnline\Item\Parser\DefaultParser;
 use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
 
@@ -532,22 +534,35 @@ class Item
     }
 
     /**
-     * @param Parser $parser
+     * @param string|null $hex
+     * @param Parser|null $parser
      * @return $this
      */
-    public function parse(Parser $parser): self
+    public function parse(string $hex = null, Parser $parser = null): self
     {
+        if (! $hex) {
+            $hex = $this->getHex();
+        }
+
+        if (! $parser) {
+            $parser = new DefaultParser($hex);
+        }
+
         $parser->parse($this);
 
         return $this;
     }
 
     /**
-     * @param Maker $maker
+     * @param Maker|null $maker
      * @return string
      */
-    public function make(Maker $maker): string
+    public function make(Maker $maker = null): string
     {
+        if (! $maker) {
+            $maker = new DefaultMaker();
+        }
+
         $hex = $maker->make($this);
         $this->setHex($hex);
 

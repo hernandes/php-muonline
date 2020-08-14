@@ -6,8 +6,13 @@ use MuOnline\Item\Item;
 class DefaultParser extends AbstractParser
 {
 
+    /**
+     * @param Item $item
+     * @return mixed|void
+     */
     public function parse(Item $item)
     {
-        $item->setSection(2);
+        $hex = $this->getHex();
+
     }
 }
