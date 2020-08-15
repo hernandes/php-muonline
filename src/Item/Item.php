@@ -83,6 +83,11 @@ class Item
      */
     private $mastery;
 
+    /**
+     * @var Time
+     */
+    private $time;
+
 
     public function __construct(?int $section = null, ?int $index = null)
     {
@@ -502,7 +507,7 @@ class Item
         }
 
         if (! $slot instanceof SocketSlot) {
-            $slot = new SocketSlot($slot);
+            $slot = (new SocketSlot())->parse($slot);
         }
 
         $this->socket->add($index, $slot);
@@ -527,6 +532,25 @@ class Item
     public function getMastery(): Mastery
     {
         return $this->mastery;
+    }
+
+    /**
+     * @param Time $time
+     * @return $this
+     */
+    public function setTime(Time $time): self
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    /**
+     * @return Time
+     */
+    public function getTime(): Time
+    {
+        return $this->time;
     }
 
     /**

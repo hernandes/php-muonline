@@ -74,4 +74,16 @@ class Ancient
 
         return $this;
     }
+
+    /**
+     * @param string $hex
+     * @return $this
+     */
+    public function parse(string $hex)
+    {
+        $this->type = 2;
+        $this->stamina = 5;
+
+        return $this;
+    }
 }

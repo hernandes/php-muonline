@@ -68,4 +68,16 @@ class Slot
 
         return $this;
     }
+
+    /**
+     * @param $hex
+     * @return $this
+     */
+    public function parse($hex)
+    {
+        $this->id = 0;
+        $this->level = 0;
+
+        return $this;
+    }
 }
