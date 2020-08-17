@@ -20,3 +20,7 @@ $item2->parse('786FFF00275EF5FF00FF', new \MuOnline\Item\Parser\Season0());
 dump($item2);
 
 dump($item2->make(new \MuOnline\Item\Maker\Season0()));
+
+$item3 = new \MuOnline\Item\Item();
+$item3->setDurability(new \MuOnline\Item\Durability(10));
+dump($item3);

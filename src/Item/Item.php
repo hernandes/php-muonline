@@ -499,7 +499,7 @@ class Item
      * @param Socket $socket
      * @return $this
      */
-    public function setSockets(Socket $socket): self
+    public function setSocket(Socket $socket): self
     {
         $this->socket = $socket->setItem($this);
 
@@ -509,9 +509,22 @@ class Item
     /**
      * @return Socket
      */
-    public function getSockets(): Socket
+    public function getSocket(): Socket
     {
+        if (! $this->socket) {
+            $this->socket = (new Socket())->setItem($this);
+        }
+
         return $this->socket;
+    }
+
+    /**
+     * @param int $index
+     * @return SocketSlot
+     */
+    public function getSocketSlot(int $index): SocketSlot
+    {
+        return $this->getSocket()->getSlot($index);
     }
 
     /**
@@ -521,15 +534,11 @@ class Item
      */
     public function addSocketInSlot(int $index, $slot): self
     {
-        if (! $this->socket) {
-            $this->socket = (new Socket())->setItem($this);
-        }
-
         if (! $slot instanceof SocketSlot) {
             $slot = (new SocketSlot())->parse($slot);
         }
 
-        $this->socket->add($index, $slot);
+        $this->getSocket()->add($index, $slot);
 
         return $this;
     }

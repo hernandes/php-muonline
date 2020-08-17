@@ -32,6 +32,21 @@ class Socket
     }
 
     /**
+     * @param int $index
+     * @return Slot
+     */
+    public function getSlot(int $index): Slot
+    {
+        $slot = $this->slots[$index] ?? null;
+        if (! $slot) {
+            $slot = new Slot(255);
+            $this->add($index, $slot);
+        }
+
+        return $slot;
+    }
+
+    /**
      * @param Bonus $bonus
      * @return $this
      */
