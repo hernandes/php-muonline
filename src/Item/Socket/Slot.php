@@ -13,9 +13,15 @@ class Slot
      */
     private $level;
 
+    /**
+     * Slot constructor.
+     * @param int|null $id
+     * @param int|null $level
+     */
     public function __construct(?int $id = null, ?int $level = null)
     {
-        $this->add($id, $level);
+        $this->id = $id;
+        $this->level = $level;
     }
 
     /**

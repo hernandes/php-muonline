@@ -10,6 +10,10 @@ class Serial
      */
     private $value;
 
+    /**
+     * Serial constructor.
+     * @param string|null $value
+     */
     public function __construct(?string $value = null)
     {
         $this->value = $value;

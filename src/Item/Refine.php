@@ -8,8 +8,12 @@ class Refine
     /**
      * @var bool
      */
-    private $value = false;
+    private $value;
 
+    /**
+     * Refine constructor.
+     * @param bool $value
+     */
     public function __construct(bool $value = false)
     {
         $this->value = $value;

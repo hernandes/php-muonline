@@ -7,11 +7,11 @@ class Slot
     /**
      * @var bool
      */
-    private $value = false;
+    private $value;
 
     public function __construct(bool $value = false)
     {
-        $this->add($value);
+        $this->value = $value;
     }
 
     /**

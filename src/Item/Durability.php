@@ -11,6 +11,10 @@ class Durability
      */
     private $value;
 
+    /**
+     * Durability constructor.
+     * @param int $value
+     */
     public function __construct(int $value = 0)
     {
         $this->value = $value;

@@ -16,6 +16,11 @@ class Harmony
      */
     private $level;
 
+    /**
+     * Harmony constructor.
+     * @param int|null $type
+     * @param int|null $level
+     */
     public function __construct(int $type = null, int $level = null)
     {
         $this->type = $type;

@@ -11,6 +11,10 @@ class Time
      */
     private $value;
 
+    /**
+     * Time constructor.
+     * @param int $value
+     */
     public function __construct(int $value = 0)
     {
         $this->value = $value;

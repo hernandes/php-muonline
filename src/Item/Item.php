@@ -93,6 +93,11 @@ class Item
      */
     private $dirty = false;
 
+    /**
+     * Item constructor.
+     * @param int|null $section
+     * @param int|null $index
+     */
     public function __construct(?int $section = null, ?int $index = null)
     {
         $this->section = $section;

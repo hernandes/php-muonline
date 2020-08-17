@@ -8,8 +8,12 @@ class Luck
     /**
      * @var bool
      */
-    private $value = false;
+    private $value;
 
+    /**
+     * Luck constructor.
+     * @param bool $value
+     */
     public function __construct(bool $value = false)
     {
         $this->value = $value;

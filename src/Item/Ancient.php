@@ -18,6 +18,11 @@ class Ancient
      */
     private $stamina;
 
+    /**
+     * Ancient constructor.
+     * @param int|null $type
+     * @param int|null $stamina
+     */
     public function __construct(?int $type = null, ?int $stamina = null)
     {
         $this->type = $type;
