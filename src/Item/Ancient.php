@@ -69,8 +69,8 @@ class Ancient
      */
     public function add(int $type, int $stamina = self::STAMINA_5): self
     {
-        $this->type = $type;
-        $this->stamina = $stamina;
+        $this->setType($type);
+        $this->setStamina($stamina);
 
         return $this;
     }
@@ -79,7 +79,7 @@ class Ancient
      * @param string $hex
      * @return $this
      */
-    public function parse(string $hex)
+    public function parse(string $hex): self
     {
         $this->type = 2;
         $this->stamina = 5;

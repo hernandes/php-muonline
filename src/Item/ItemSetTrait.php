@@ -16,6 +16,7 @@ trait ItemSetTrait
     public function setItem(Item $item): self
     {
         $this->item = $item;
+        $item->setDirty(true);
 
         return $this;
     }

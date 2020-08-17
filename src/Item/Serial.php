@@ -10,9 +10,9 @@ class Serial
      */
     private $value;
 
-    public function __construct(?string $serial = null)
+    public function __construct(?string $value = null)
     {
-        $this->value = $serial;
+        $this->value = $value;
     }
 
     /**

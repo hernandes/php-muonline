@@ -12,14 +12,14 @@ class Skill
 
     public function __construct(bool $value = false)
     {
-        $this->add($value);
+        $this->value = $value;
     }
 
     /**
      * @param bool $value
      * @return Skill
      */
-    public function set(bool $value = false) : self
+    public function set(bool $value = false): self
     {
         $this->value = $value;
 
@@ -29,18 +29,17 @@ class Skill
     /**
      * @return bool
      */
-    public function has()
+    public function has(): bool
     {
         return $this->value;
     }
 
     /**
-     * @param bool $value
-     * @return Skill
+     * @return $this
      */
-    public function add(bool $value = true) : self
+    public function add(): self
     {
-        $this->value = $value;
+        $this->set(true);
 
         return $this;
     }

@@ -18,14 +18,15 @@ class Harmony
 
     public function __construct(int $type = null, int $level = null)
     {
-        $this->add($type, $level);
+        $this->type = $type;
+        $this->level = $level;
     }
 
     /**
      * @param int $type
      * @return $this
      */
-    public function setType(int $type) : self
+    public function setType(int $type): self
     {
         $this->type = $type;
 
@@ -35,7 +36,7 @@ class Harmony
     /**
      * @return int
      */
-    public function getType() : int
+    public function getType(): int
     {
         return $this->type;
     }
@@ -44,7 +45,7 @@ class Harmony
      * @param int $level
      * @return $this
      */
-    public function setLevel(int $level) : self
+    public function setLevel(int $level): self
     {
         $this->level = $level;
 
@@ -54,7 +55,7 @@ class Harmony
     /**
      * @return int
      */
-    public function getLevel() : int
+    public function getLevel(): int
     {
         return $this->level;
     }
@@ -64,10 +65,10 @@ class Harmony
      * @param int|null $level
      * @return $this
      */
-    public function add(?int $type = null, ?int $level = null) : self
+    public function add(?int $type = null, ?int $level = null): self
     {
-        $this->type = $type;
-        $this->level = $level;
+        $this->setType($type);
+        $this->setLevel($level);
 
         return $this;
     }

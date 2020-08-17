@@ -20,7 +20,7 @@ class Time
      * @param int $value
      * @return $this
      */
-    public function set(int $value) : self
+    public function set(int $value): self
     {
         $this->value = $value;
 
@@ -30,7 +30,7 @@ class Time
     /**
      * @return int|null
      */
-    public function get() : ?int
+    public function get(): ?int
     {
         return $this->value;
     }

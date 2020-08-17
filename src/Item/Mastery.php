@@ -30,7 +30,7 @@ class Mastery
     public function getBonus(): Bonus
     {
         if (! $this->bonus) {
-            $this->bonus = (new Bonus());
+            $this->setBonus(new Bonus());
         }
 
         return $this->bonus;
