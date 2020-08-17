@@ -2,7 +2,6 @@
 namespace MuOnline\Item;
 
 use MuOnline\Item\Maker\MakerFactory;
-use MuOnline\Item\Maker\Season0;
 use MuOnline\Item\Parser\ParserFactory;
 use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
