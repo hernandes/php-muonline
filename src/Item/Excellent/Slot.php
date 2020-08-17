@@ -38,12 +38,11 @@ class Slot
     }
 
     /**
-     * @param bool $value
-     * @return Slot
+     * @return $this
      */
-    public function add(bool $value = true): self
+    public function add(): self
     {
-        $this->value = $value;
+        $this->value = true;
 
         return $this;
     }
