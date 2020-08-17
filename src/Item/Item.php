@@ -88,6 +88,10 @@ class Item
      */
     private $time;
 
+    /**
+     * @var bool;
+     */
+    private $dirty = false;
 
     public function __construct(?int $section = null, ?int $index = null)
     {
@@ -121,6 +125,7 @@ class Item
     public function setSection(int $section): self
     {
         $this->section = $section;
+        $this->dirty = true;
 
         return $this;
     }
@@ -140,6 +145,7 @@ class Item
     public function setIndex(int $index): self
     {
         $this->index = $index;
+        $this->dirty = true;
 
         return $this;
     }
@@ -159,6 +165,7 @@ class Item
     public function setLevel(int $level): self
     {
         $this->level = $level;
+        $this->dirty = true;
 
         return $this;
     }
@@ -178,6 +185,7 @@ class Item
     public function addLevel(int $levels = 1): self
     {
         $this->level += $levels;
+        $this->dirty = true;
 
         return $this;
     }
@@ -189,6 +197,7 @@ class Item
     public function setOption(int $option): self
     {
         $this->option = $option;
+        $this->dirty = true;
 
         return $this;
     }
@@ -208,6 +217,7 @@ class Item
     public function addOption(int $options = 4): self
     {
         $this->option += $options;
+        $this->dirty = true;
 
         return $this;
     }
@@ -219,6 +229,7 @@ class Item
     public function setLuck(Luck $luck): self
     {
         $this->luck = $luck->setItem($this);
+        $this->dirty = true;
 
         return $this;
     }
@@ -241,17 +252,19 @@ class Item
         }
 
         $this->luck->add();
+        $this->dirty = true;
 
         return $this;
     }
 
     /**
-     * @param $skill
+     * @param Skill $skill
      * @return $this
      */
     public function setSkill(Skill $skill): self
     {
         $this->skill = $skill->setItem($this);
+        $this->dirty = true;
 
         return $this;
     }
@@ -274,6 +287,7 @@ class Item
         }
 
         $this->skill->add();
+        $this->dirty = true;
 
         return $this;
     }
@@ -289,6 +303,7 @@ class Item
         }
 
         $this->durability = $durability->setItem($this);
+        $this->dirty = true;
 
         return $this;
     }
@@ -308,6 +323,7 @@ class Item
     public function setAncient(Ancient $ancient): self
     {
         $this->ancient = $ancient->setItem($this);
+        $this->dirty = true;
 
         return $this;
     }
@@ -332,6 +348,7 @@ class Item
         }
 
         $this->ancient->add($type, $stamina);
+        $this->dirty = true;
 
         return $this;
     }
@@ -343,6 +360,7 @@ class Item
     public function setSerial(Serial $serial): self
     {
         $this->serial = $serial->setItem($this);
+        $this->dirty = true;
 
         return $this;
     }
@@ -365,6 +383,7 @@ class Item
         }
 
         $this->serial->generate();
+        $this->dirty = true;
 
         return $this;
     }
@@ -376,6 +395,7 @@ class Item
     public function setExcellent(Excellent $excellent): self
     {
         $this->excellent = $excellent->setItem($this);
+        $this->dirty = true;
 
         return $this;
     }
@@ -392,6 +412,10 @@ class Item
         return $this->excellent;
     }
 
+    /**
+     * @param int $index
+     * @return ExcellentSlot
+     */
     public function getExcellentSlot(int $index): ExcellentSlot
     {
         return $this->getExcellent()->getSlot($index);
@@ -409,6 +433,7 @@ class Item
         }
 
         $this->getExcellent()->add($index, $slot);
+        $this->dirty = true;
 
         return $this;
     }
@@ -420,6 +445,7 @@ class Item
     public function setHarmony(Harmony $harmony): self
     {
         $this->harmony = $harmony->setItem($this);
+        $this->dirty = true;
 
         return $this;
     }
@@ -444,6 +470,7 @@ class Item
         }
 
         $this->harmony->add($type, $level);
+        $this->dirty = true;
 
         return $this;
     }
@@ -455,6 +482,7 @@ class Item
     public function setRefine(Refine $refine): self
     {
         $this->refine = $refine;
+        $this->dirty = true;
 
         return $this;
     }
@@ -477,6 +505,7 @@ class Item
         }
 
         $this->refine->add();
+        $this->dirty = true;
 
         return $this;
     }
@@ -516,6 +545,7 @@ class Item
         }
 
         $this->socket->add($index, $slot);
+        $this->dirty = true;
 
         return $this;
     }
@@ -527,6 +557,7 @@ class Item
     public function setMastery(Mastery $mastery): self
     {
         $this->mastery = $mastery;
+        $this->dirty = true;
 
         return $this;
     }
@@ -546,6 +577,7 @@ class Item
     public function setTime(Time $time): self
     {
         $this->time = $time;
+        $this->dirty = true;
 
         return $this;
     }
@@ -556,6 +588,25 @@ class Item
     public function getTime(): Time
     {
         return $this->time;
+    }
+
+    /**
+     * @param bool $dirty
+     * @return $this
+     */
+    public function setDirty(bool $dirty = true): self
+    {
+        $this->dirty = $dirty;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDirty(): bool
+    {
+        return $this->dirty;
     }
 
     /**
@@ -592,4 +643,5 @@ class Item
 
         return $this->getHex();
     }
+
 }
