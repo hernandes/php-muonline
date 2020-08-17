@@ -13,11 +13,30 @@ class Excellent
      */
     private $slots = [];
 
-
-    public function add($position, Slot $slot) : self
+    /**
+     * @param $position
+     * @param Slot $slot
+     * @return $this
+     */
+    public function add($position, Slot $slot): self
     {
         $this->slots[$position] = $slot;
 
         return $this;
+    }
+
+    /**
+     * @param $index
+     * @return Slot
+     */
+    public function getSlot($index): Slot
+    {
+        $slot = $this->slots[$index] ?? null;
+        if (! $slot) {
+            $slot = new Slot(false);
+            $this->add($index, $slot);
+        }
+
+        return $slot;
     }
 }

@@ -14,7 +14,7 @@ class Season0 extends AbstractParser
 
     /**
      * @param Item $item
-     * @return mixed|void
+     * @return void
      */
     public function parse(Item $item)
     {
@@ -44,7 +44,7 @@ class Season0 extends AbstractParser
 
         $tempExcellent = hexdec(substr($hex, 14, 2));
         $item->addExcellentInSlot(0, ($tempExcellent & 0x01) === 0x01);
-        $item->addExcellentInSlot(1, ($tempExcellent & 0x20) === 0x02);
+        $item->addExcellentInSlot(1, ($tempExcellent & 0x02) === 0x02);
         $item->addExcellentInSlot(2, ($tempExcellent & 0x04) === 0x04);
         $item->addExcellentInSlot(3, ($tempExcellent & 0x08) === 0x08);
         $item->addExcellentInSlot(4, ($tempExcellent & 0x10) === 0x10);
@@ -54,9 +54,15 @@ class Season0 extends AbstractParser
         $item->setSerial(new Serial($tempSerial));
     }
 
+    /**
+     * @param $hex
+     * @return int
+     */
     protected function parseOption($hex)
     {
         $temp = hexdec(substr($hex, 2, 2));
+        $temp2 = hexdec(substr($this->getHex(), 14, 2));
+
         if ($temp >= 128) {
             $temp -= 128;
         }
@@ -67,11 +73,11 @@ class Season0 extends AbstractParser
             $temp -= 4;
         }
 
-        if ($temp >= 64) {
+        if ($temp2 >= 64) {
             $temp += 4;
         }
 
-        return $temp * 4;
+        return (int) $temp * 4;
     }
 
 }

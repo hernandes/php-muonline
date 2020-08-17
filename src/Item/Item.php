@@ -385,7 +385,16 @@ class Item
      */
     public function getExcellent(): Excellent
     {
+        if (! $this->excellent) {
+            $this->excellent = (new Excellent())->setItem($this);
+        }
+
         return $this->excellent;
+    }
+
+    public function getExcellentSlot(int $index): ExcellentSlot
+    {
+        return $this->getExcellent()->getSlot($index);
     }
 
     /**
@@ -395,15 +404,11 @@ class Item
      */
     public function addExcellentInSlot(int $index, $slot): self
     {
-        if (! $this->excellent) {
-            $this->excellent = (new Excellent())->setItem($this);
-        }
-
         if (! $slot instanceof ExcellentSlot) {
             $slot = new ExcellentSlot($slot);
         }
 
-        $this->excellent->add($index, $slot);
+        $this->getExcellent()->add($index, $slot);
 
         return $this;
     }
