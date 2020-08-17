@@ -22,5 +22,5 @@ dump($item2);
 dump($item2->make(new \MuOnline\Item\Maker\Season0()));
 
 $item3 = new \MuOnline\Item\Item();
-$item3->setDurability(new \MuOnline\Item\Durability(10));
+$item3->setLevel(12);
 dump($item3);
