@@ -1,8 +1,9 @@
 <?php
 namespace MuOnline\Item;
 
-use MuOnline\Item\Maker\DefaultMaker;
-use MuOnline\Item\Parser\DefaultParser;
+use MuOnline\Item\Maker\MakerFactory;
+use MuOnline\Item\Maker\Season0;
+use MuOnline\Item\Parser\ParserFactory;
 use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
 
@@ -565,7 +566,7 @@ class Item
         }
 
         if (! $parser) {
-            $parser = new DefaultParser($hex);
+            $parser = ParserFactory::factory($hex);
         }
 
         $parser->setHex($hex)->parse($this);
@@ -580,7 +581,7 @@ class Item
     public function make(Maker $maker = null): string
     {
         if (! $maker) {
-            $maker = new DefaultMaker();
+            $maker = MakerFactory::factory();
         }
 
         $this->setHex($maker->make($this));

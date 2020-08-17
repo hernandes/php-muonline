@@ -14,9 +14,9 @@ $item = (new \MuOnline\Item\Item(0, 0))
     ->addRefine()
     ->generateSerial();
 
-$item->make(new \MuOnline\Item\Maker\DefaultMaker());
+$item->make(new \MuOnline\Item\Maker\Season0());
 
 $item2 = new \MuOnline\Item\Item();
-$item2->parse('abc', new \MuOnline\Item\Parser\DefaultParser());
+$item2->parse('786FFF00275EF5FF00FF', new \MuOnline\Item\Parser\Season0());
 
 dump($item2);

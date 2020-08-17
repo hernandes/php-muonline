@@ -4,7 +4,7 @@ namespace MuOnline\Item\Maker;
 use MuOnline\Item\Item;
 use MuOnline\Item\Maker;
 
-class DefaultMaker implements Maker
+class Season0 implements Maker
 {
 
     /**
