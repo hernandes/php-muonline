@@ -617,7 +617,7 @@ class Item
         }
 
         if (! $parser) {
-            $parser = ParserFactory::factory($hex);
+            $parser = ParserFactory::factory();
         }
 
         $parser->setHex($hex)->parse($this);
