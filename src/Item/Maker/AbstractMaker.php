@@ -21,7 +21,7 @@ abstract class AbstractMaker implements Maker
      * @param int $size
      * @return string
      */
-    protected function fix($string, $size = 2): string
+    protected function pad($string, $size = 2): string
     {
         return str_pad($string, $size, 0, STR_PAD_LEFT);
     }

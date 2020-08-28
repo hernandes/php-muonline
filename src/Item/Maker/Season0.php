@@ -20,7 +20,7 @@ class Season0 extends AbstractMaker
         $hex = '';
 
         $unique = $item->getSection() * 32 > 255;
-        $hex .= $this->fix(dechex((($item->getIndex() & 0x1F) | (($item->getSection() << 5) & 0xE0)) & 0xFF));
+        $hex .= $this->pad(dechex((($item->getIndex() & 0x1F) | (($item->getSection() << 5) & 0xE0)) & 0xFF));
 
         $level = $item->getLevel() * 8;
         $level += $item->getSkill()->has() ? 128 : 0;
@@ -44,9 +44,9 @@ class Season0 extends AbstractMaker
                 break;
         }
 
-        $hex .= $this->fix(dechex($level));
-        $hex .= $this->fix(dechex($item->getDurability()->get()));
-        $hex .= $this->fix($item->getSerial()->get(), 8);
+        $hex .= $this->pad(dechex($level));
+        $hex .= $this->pad(dechex($item->getDurability()->get()));
+        $hex .= $this->pad($item->getSerial()->get(), 8);
 
         $excellent = $unique ? 128 : 0;
         $excellent += $item->getOption() >= 16 ? 64 : 0;
@@ -57,7 +57,7 @@ class Season0 extends AbstractMaker
         $excellent += $item->getExcellentSlot(4)->has() ? 16 : 0;
         $excellent += $item->getExcellentSlot(5)->has() ? 32 : 0;
 
-        $hex .= $this->fix(dechex($excellent));
+        $hex .= $this->pad(dechex($excellent));
         $hex .= '00FF';
 
         return strtoupper($hex);
