@@ -3,7 +3,7 @@ namespace MuOnline\Item;
 
 class Ancient
 {
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     const STAMINA_5 = 5;
     const STAMINA_10 = 10;

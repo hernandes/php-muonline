@@ -4,7 +4,7 @@ namespace MuOnline\Item;
 class Time
 {
 
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     /**
      * @var int

@@ -7,7 +7,7 @@ use MuOnline\Item\Mastery\Slot;
 class Mastery
 {
 
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     /**
      * @var array<Slot>

@@ -1,13 +1,12 @@
 <?php
 namespace MuOnline\Item\Mastery;
 
+use MuOnline\Item\BoolValueTrait;
+
 class Slot
 {
 
-    /**
-     * @var bool
-     */
-    private $value;
+    use BoolValueTrait;
 
     /**
      * Slot constructor.
@@ -16,35 +15,6 @@ class Slot
     public function __construct(bool $value = false)
     {
         $this->value = $value;
-    }
-
-    /**
-     * @param bool $value
-     * @return Slot
-     */
-    public function set(bool $value = false): self
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function has(): bool
-    {
-        return $this->value;
-    }
-
-    /**
-     * @return $this
-     */
-    public function add(): self
-    {
-        $this->value = true;
-
-        return $this;
     }
 
 }

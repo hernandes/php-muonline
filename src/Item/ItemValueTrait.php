@@ -1,7 +1,7 @@
 <?php
 namespace MuOnline\Item;
 
-trait ItemSetTrait
+trait ItemValueTrait
 {
 
     /**

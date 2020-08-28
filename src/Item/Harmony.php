@@ -4,7 +4,7 @@ namespace MuOnline\Item;
 class Harmony
 {
 
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     /**
      * @var int

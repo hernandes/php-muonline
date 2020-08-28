@@ -6,7 +6,7 @@ use MuOnline\Item\Excellent\Slot;
 
 class Excellent
 {
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     /**
      * @var array<Slot>

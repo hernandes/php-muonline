@@ -3,7 +3,7 @@ namespace MuOnline\Item;
 
 class Serial
 {
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     /**
      * @var string

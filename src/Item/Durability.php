@@ -4,7 +4,7 @@ namespace MuOnline\Item;
 class Durability
 {
 
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     /**
      * @var int

@@ -7,7 +7,7 @@ use MuOnline\Item\Socket\Slot;
 class Socket
 {
 
-    use ItemSetTrait;
+    use ItemValueTrait;
 
     /**
      * @var array<Slot>
