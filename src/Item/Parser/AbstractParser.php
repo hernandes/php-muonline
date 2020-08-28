@@ -47,4 +47,5 @@ abstract class AbstractParser implements Parser
     {
         throw new \BadMethodCallException('Method parse not implemented yet!');
     }
+
 }

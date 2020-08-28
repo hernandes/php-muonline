@@ -14,6 +14,21 @@ class Item
     private $hex;
 
     /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var int
+     */
+    private $width;
+
+    /**
+     * @var int
+     */
+    private $height;
+
+    /**
      * @var int
      */
     private $section;
@@ -121,6 +136,63 @@ class Item
     public function getHex(): ?string
     {
         return $this->hex;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param int $width
+     * @return $this
+     */
+    public function setWidth(int $width): self
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWidth(): string
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param int $height
+     * @return $this
+     */
+    public function setHeight(int $height): self
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHeight(): string
+    {
+        return $this->height;
     }
 
     /**
@@ -620,7 +692,8 @@ class Item
             $parser = ParserFactory::factory();
         }
 
-        $parser->setHex($hex)->parse($this);
+        $parser->setHex($hex)
+            ->parse($this);
 
         return $this;
     }
@@ -638,6 +711,26 @@ class Item
         $this->setHex($maker->make($this));
 
         return $this->getHex();
+    }
+
+    /**
+     * @return $this
+     */
+    public function updateFromFile(): self
+    {
+        $this->setName('abv')
+            ->setWidth(10)
+            ->setHeight(10);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name ?? '';
     }
 
 }

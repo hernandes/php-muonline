@@ -4,8 +4,8 @@ include 'vendor/autoload.php';
 
 ini_set('display_errors', 1);
 
-$item = (new \MuOnline\Item\Item(0, 0))
-    ->setDurability(20)
+$item = (new \MuOnline\Item\Item(0, 0));
+$item->setDurability(20)
     ->addSkill()
     ->addAncient(1, 5)
     ->addHarmony(20, 40)
@@ -23,4 +23,5 @@ dump($item2->make(new \MuOnline\Item\Maker\Season0()));
 
 $item3 = new \MuOnline\Item\Item();
 $item3->setLevel(12);
+$item3->updateFromFile();
 dump($item3);
