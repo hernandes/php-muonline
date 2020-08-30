@@ -315,6 +315,10 @@ class Item
      */
     public function getLuck(): Luck
     {
+        if (! $this->luck) {
+            $this->luck = (new Luck())->setItem($this);
+        }
+
         return $this->luck;
     }
 
@@ -323,11 +327,7 @@ class Item
      */
     public function addLuck(): self
     {
-        if (! $this->luck) {
-            $this->luck = (new Luck())->setItem($this);
-        }
-
-        $this->luck->add();
+        $this->getLuck()->add();
 
         return $this;
     }
@@ -348,6 +348,10 @@ class Item
      */
     public function getSkill(): Skill
     {
+        if (! $this->skill) {
+            $this->skill = (new Skill())->setItem($this);
+        }
+
         return $this->skill;
     }
 
@@ -356,11 +360,7 @@ class Item
      */
     public function addSkill(): self
     {
-        if (! $this->skill) {
-            $this->skill = (new Skill())->setItem($this);
-        }
-
-        $this->skill->add();
+        $this->getSkill()->add();
 
         return $this;
     }
@@ -404,6 +404,10 @@ class Item
      */
     public function getAncient(): Ancient
     {
+        if (! $this->ancient) {
+            $this->ancient = (new Ancient())->setItem($this);
+        }
+
         return $this->ancient;
     }
 
@@ -414,11 +418,7 @@ class Item
      */
     public function addAncient(int $type, int $stamina = Ancient::STAMINA_5): self
     {
-        if (! $this->ancient) {
-            $this->ancient = (new Ancient())->setItem($this);
-        }
-
-        $this->ancient->add($type, $stamina);
+        $this->getAncient()->add($type, $stamina);
 
         return $this;
     }
@@ -439,6 +439,10 @@ class Item
      */
     public function getSerial(): Serial
     {
+        if (! $this->serial) {
+            $this->serial = (new Serial())->setItem($this);
+        }
+
         return $this->serial;
     }
 
@@ -447,11 +451,7 @@ class Item
      */
     public function generateSerial(): self
     {
-        if (! $this->serial) {
-            $this->serial = (new Serial())->setItem($this);
-        }
-
-        $this->serial->generate();
+        $this->getSerial()->generate();
 
         return $this;
     }
@@ -520,6 +520,10 @@ class Item
      */
     public function getHarmony(): Harmony
     {
+        if (! $this->harmony) {
+            $this->harmony = (new Harmony())->setItem($this);
+        }
+
         return $this->harmony;
     }
 
@@ -530,11 +534,7 @@ class Item
      */
     public function addHarmony(int $type = 0, int $level = 0): self
     {
-        if (! $this->harmony) {
-            $this->harmony = (new Harmony())->setItem($this);
-        }
-
-        $this->harmony->add($type, $level);
+        $this->getHarmony()->add($type, $level);
 
         return $this;
     }
@@ -555,6 +555,10 @@ class Item
      */
     public function getRefine(): Refine
     {
+        if (! $this->refine) {
+            $this->refine = (new Refine())->setItem($this);
+        }
+
         return $this->refine;
     }
 
@@ -563,11 +567,7 @@ class Item
      */
     public function addRefine(): self
     {
-        if (! $this->refine) {
-            $this->refine = (new Refine())->setItem($this);
-        }
-
-        $this->refine->add();
+        $this->getRefine()->add();
 
         return $this;
     }
