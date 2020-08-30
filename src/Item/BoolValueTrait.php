@@ -7,7 +7,7 @@ trait BoolValueTrait
     /**
      * @var bool
      */
-    private $value = false;
+    private $value;
 
 
     /**
