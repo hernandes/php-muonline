@@ -636,6 +636,10 @@ class Item
      */
     public function getMastery(): Mastery
     {
+        if (! $this->mastery) {
+            $this->mastery = (new Mastery())->setItem($this);
+        }
+
         return $this->mastery;
     }
 
@@ -655,6 +659,10 @@ class Item
      */
     public function getTime(): Time
     {
+        if (! $this->time) {
+            $this->time = (new Time())->setItem($this);
+        }
+
         return $this->time;
     }
 
