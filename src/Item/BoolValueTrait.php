@@ -26,7 +26,7 @@ trait BoolValueTrait
      */
     public function has(): bool
     {
-        return $this->value;
+        return $this->value ?? false;
     }
 
     /**
