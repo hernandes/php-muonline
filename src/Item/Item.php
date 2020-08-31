@@ -670,9 +670,19 @@ class Item
      * @param bool $dirty
      * @return $this
      */
-    public function setDirty(bool $dirty = true): self
+    public function setDirty(bool $dirty): self
     {
         $this->dirty = $dirty;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function addDirty(): self
+    {
+        $this->setDirty(true);
 
         return $this;
     }
