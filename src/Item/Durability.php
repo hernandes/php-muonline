@@ -4,12 +4,8 @@ namespace MuOnline\Item;
 class Durability
 {
 
-    use ItemValueTrait;
-
-    /**
-     * @var int
-     */
-    private $value;
+    use ItemValueTrait,
+        IntValueTrait;
 
     /**
      * Durability constructor.
@@ -18,25 +14,6 @@ class Durability
     public function __construct(int $value = 0)
     {
         $this->value = $value;
-    }
-
-    /**
-     * @param int $value
-     * @return $this
-     */
-    public function set(int $value): self
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function get(): ?int
-    {
-        return $this->value;
     }
 
     public function repair()

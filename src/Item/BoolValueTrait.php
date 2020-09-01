@@ -12,7 +12,7 @@ trait BoolValueTrait
 
     /**
      * @param bool $value
-     * @return Refine
+     * @return $this
      */
     public function set(bool $value = false): self
     {
