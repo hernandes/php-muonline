@@ -6,6 +6,7 @@ use MuOnline\Item\Excellent\Slot;
 
 class Excellent
 {
+
     use ItemValueTrait;
 
     /**
@@ -39,4 +40,5 @@ class Excellent
 
         return $slot;
     }
+
 }

@@ -3,6 +3,7 @@ namespace MuOnline\Item;
 
 class Refine
 {
+
     use ItemValueTrait,
         BoolValueTrait;
 

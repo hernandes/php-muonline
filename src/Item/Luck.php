@@ -15,5 +15,4 @@ class Luck
         $this->value = $value;
     }
 
-
 }

@@ -3,6 +3,7 @@ namespace MuOnline\Item;
 
 class Skill
 {
+
     use ItemValueTrait,
         BoolValueTrait;
 
