@@ -1,6 +1,8 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\ItemValueTrait;
+
 class Ancient
 {
     use ItemValueTrait;
@@ -11,7 +13,7 @@ class Ancient
     /**
      * @var int|null
      */
-    private $type;
+    private $tier;
 
     /**
      * @var int|null
@@ -20,22 +22,22 @@ class Ancient
 
     /**
      * Ancient constructor.
-     * @param int|null $type
+     * @param int|null $tier
      * @param int|null $stamina
      */
-    public function __construct(?int $type = null, ?int $stamina = null)
+    public function __construct(?int $tier = null, ?int $stamina = null)
     {
-        $this->type = $type;
+        $this->tier = $tier;
         $this->stamina = $stamina;
     }
 
     /**
-     * @param int $type
+     * @param int $tier
      * @return $this
      */
-    public function setType(int $type): self
+    public function setTier(int $tier): self
     {
-        $this->type = $type;
+        $this->tier = $tier;
 
         return $this;
     }
@@ -43,9 +45,9 @@ class Ancient
     /**
      * @return int
      */
-    public function getType(): int
+    public function getTier(): int
     {
-        return $this->type;
+        return $this->tier;
     }
 
     /**
@@ -68,13 +70,13 @@ class Ancient
     }
 
     /**
-     * @param int $type
+     * @param int $tier
      * @param int $stamina
      * @return $this
      */
-    public function add(int $type, int $stamina = self::STAMINA_5): self
+    public function add(int $tier, int $stamina = self::STAMINA_5): self
     {
-        $this->setType($type);
+        $this->setTier($tier);
         $this->setStamina($stamina);
 
         return $this;
@@ -86,7 +88,7 @@ class Ancient
      */
     public function parse(string $hex): self
     {
-        $this->type = 2;
+        $this->tier = 2;
         $this->stamina = 5;
 
         return $this;

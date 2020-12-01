@@ -3,6 +3,7 @@ namespace MuOnline\Item;
 
 use MuOnline\Item\Socket\Bonus;
 use MuOnline\Item\Socket\Slot;
+use MuOnline\Util\ItemValueTrait;
 
 class Socket
 {

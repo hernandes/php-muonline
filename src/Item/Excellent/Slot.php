@@ -1,7 +1,7 @@
 <?php
 namespace MuOnline\Item\Excellent;
 
-use MuOnline\Item\BoolValueTrait;
+use MuOnline\Util\BoolValueTrait;
 
 class Slot
 {

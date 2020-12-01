@@ -1,6 +1,9 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\IntValueTrait;
+use MuOnline\Util\ItemValueTrait;
+
 class Durability
 {
 

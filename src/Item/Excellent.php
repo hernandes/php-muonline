@@ -3,6 +3,7 @@
 namespace MuOnline\Item;
 
 use MuOnline\Item\Excellent\Slot;
+use MuOnline\Util\ItemValueTrait;
 
 class Excellent
 {

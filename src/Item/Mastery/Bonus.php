@@ -1,7 +1,7 @@
 <?php
 namespace MuOnline\Item\Mastery;
 
-use MuOnline\Item\IntValueTrait;
+use MuOnline\Util\IntValueTrait;
 
 class Bonus
 {

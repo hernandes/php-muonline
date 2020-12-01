@@ -1,10 +1,14 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\ItemValueTrait;
+use MuOnline\Util\StringValueTrait;
+
 class Serial
 {
 
-    use ItemValueTrait;
+    use ItemValueTrait,
+        StringValueTrait;
 
     /**
      * @var string
@@ -18,25 +22,6 @@ class Serial
     public function __construct(?string $value = null)
     {
         $this->value = $value;
-    }
-
-    /**
-     * @param string $value
-     * @return $this
-     */
-    public function set(string $value): self
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function get(): string
-    {
-        return $this->value;
     }
 
     /**

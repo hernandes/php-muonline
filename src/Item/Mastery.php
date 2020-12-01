@@ -3,6 +3,7 @@ namespace MuOnline\Item;
 
 use MuOnline\Item\Mastery\Bonus;
 use MuOnline\Item\Mastery\Slot;
+use MuOnline\Util\ItemValueTrait;
 
 class Mastery
 {

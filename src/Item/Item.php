@@ -412,13 +412,13 @@ class Item
     }
 
     /**
-     * @param int $type
+     * @param int $tier
      * @param int $stamina
      * @return $this
      */
-    public function addAncient(int $type, int $stamina = Ancient::STAMINA_5): self
+    public function addAncient(int $tier, int $stamina = Ancient::STAMINA_5): self
     {
-        $this->getAncient()->add($type, $stamina);
+        $this->getAncient()->add($tier, $stamina);
 
         return $this;
     }

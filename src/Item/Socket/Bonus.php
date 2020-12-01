@@ -1,7 +1,7 @@
 <?php
 namespace MuOnline\Item\Socket;
 
-use MuOnline\Item\IntValueTrait;
+use MuOnline\Util\IntValueTrait;
 
 class Bonus
 {

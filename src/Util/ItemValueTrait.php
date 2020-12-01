@@ -1,5 +1,7 @@
 <?php
-namespace MuOnline\Item;
+namespace MuOnline\Util;
+
+use MuOnline\Item\Item;
 
 trait ItemValueTrait
 {

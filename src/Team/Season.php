@@ -20,5 +20,6 @@ class Season
     const SEASON_13 = 130;
     const SEASON_14 = 140;
     const SEASON_15 = 150;
+    const SEASON_16 = 160;
 
 }

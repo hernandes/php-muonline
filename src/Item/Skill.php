@@ -1,6 +1,9 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\BoolValueTrait;
+use MuOnline\Util\ItemValueTrait;
+
 class Skill
 {
 

@@ -1,6 +1,8 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\ItemValueTrait;
+
 class Harmony
 {
 

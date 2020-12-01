@@ -1,5 +1,5 @@
 <?php
-namespace MuOnline\Item;
+namespace MuOnline\Util;
 
 trait BoolValueTrait
 {
