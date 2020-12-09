@@ -15,6 +15,11 @@ abstract class AbstractTeam
     protected $seasons = [];
 
     /**
+     * @var int
+     */
+    protected $season = Season::SEASON_0;
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -36,4 +41,39 @@ abstract class AbstractTeam
         return $this->seasons;
     }
 
+    /**
+     * @param int $season
+     * @return $this
+     */
+    public function setSeason(int $season): self
+    {
+        if (! in_array($season, $this->getSupportedSeasons())) {
+            throw new \RuntimeException('Season not supported for this team');
+        }
+
+        $this->season = $season;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSeason(): int
+    {
+        return $this->season;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSeasonClass(): string
+    {
+        $season = $this->getSeason();
+        if ($season !== Season::SEASON_0) {
+            $season = $season / 10;
+        }
+
+        return 'Season' . $season;
+    }
 }

@@ -25,7 +25,7 @@ class Socket
      * @param Slot $slot
      * @return $this
      */
-    public function add($position, Slot $slot) : self
+    public function add($position, Slot $slot): self
     {
         $this->slots[$position] = $slot;
 

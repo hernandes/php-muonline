@@ -2,6 +2,7 @@
 namespace MuOnline\Item\Parser;
 
 use MuOnline\Item\Parser;
+use MuOnline\Team\Team;
 
 class ParserFactory
 {
@@ -12,7 +13,23 @@ class ParserFactory
      */
     public static function factory(string $hex = null): Parser
     {
-        return new Season0($hex);
+        $base = 'MuOnline\\Item\\Parser\\';
+        $team = Team::getCurrent();
+        $class = $base . $team->getName() . '\\' . $team->getSeasonClass();
+
+        if (! class_exists($class)) {
+            $class = $base . $team->getSeasonClass();
+
+            if (! class_exists($class)) {
+                $class = null;
+            }
+        }
+
+        if (! $class) {
+            throw new \BadMethodCallException('Class for season not implemented yet!');
+        }
+
+        return new $class;
     }
 
 }
