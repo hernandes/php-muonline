@@ -1,13 +1,9 @@
 <?php
 namespace MuOnline\Item\File\Parser;
 
-class Item
+interface Item
 {
 
-    public function parse()
-    {
-
-    }
-
+    public function parse();
 
 }

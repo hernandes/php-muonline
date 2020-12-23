@@ -12,7 +12,7 @@ class Team
     /**
      * @param AbstractTeam $team
      */
-    public static function setCurrent(AbstractTeam $team)
+    public static function set(AbstractTeam $team)
     {
         static::$current = $team;
     }
@@ -20,7 +20,7 @@ class Team
     /**
      * @return AbstractTeam
      */
-    public static function getCurrent(): AbstractTeam
+    public static function current(): AbstractTeam
     {
         return static::$current;
     }

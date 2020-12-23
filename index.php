@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 $team = new \MuOnline\Team\IGCN();
 $team->setSeason(\MuOnline\Team\Season::SEASON_15);
 
-\MuOnline\Team\Team::setCurrent($team);
+\MuOnline\Team\Team::set($team);
 
 $item = (new \MuOnline\Item\Item(0, 0));
 $item->setDurability(20)
@@ -26,7 +26,11 @@ dump($item2);
 
 dump($item2->make());
 
-$item3 = new \MuOnline\Item\Item();
+$item3 = new \MuOnline\Item\Item(0, 0);
 $item3->setLevel(12);
 $item3->updateFromFile();
 dump($item3);
+
+$parser = \MuOnline\Item\File\Parser\Item\ParserFactory::factory();
+
+dump($parser);

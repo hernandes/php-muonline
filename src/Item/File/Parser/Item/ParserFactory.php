@@ -1,19 +1,14 @@
 <?php
-namespace MuOnline\Item\Parser;
+namespace MuOnline\Item\File\Parser\Item;
 
-use MuOnline\Item\Parser;
 use MuOnline\Team\Team;
 
 class ParserFactory
 {
 
-    /**
-     * @param string|null $hex
-     * @return Parser
-     */
-    public static function factory(string $hex = null): Parser
+    public static function factory()
     {
-        $base = 'MuOnline\\Item\\Parser\\';
+        $base = 'MuOnline\\Item\\File\\Parser\\Item\\';
         $team = Team::current();
         $class = $base . $team->getName() . '\\' . $team->getSeasonClass();
 

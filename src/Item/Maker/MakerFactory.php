@@ -13,7 +13,7 @@ class MakerFactory
     public static function factory(): Maker
     {
         $base = 'MuOnline\\Item\\Maker\\';
-        $team = Team::getCurrent();
+        $team = Team::current();
         $class = $base . $team->getName() . '\\' . $team->getSeasonClass();
 
         if (! class_exists($class)) {

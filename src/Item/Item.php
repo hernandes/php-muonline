@@ -5,6 +5,7 @@ use MuOnline\Item\Maker\MakerFactory;
 use MuOnline\Item\Parser\ParserFactory;
 use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
+use MuOnline\Item\File\Parser\Item\ParserFactory as FileParserFactory;
 
 class Item
 {
@@ -713,6 +714,8 @@ class Item
         $parser->setHex($hex)
             ->parse($this);
 
+        $this->updateFromFile();
+
         return $this;
     }
 
@@ -736,9 +739,9 @@ class Item
      */
     public function updateFromFile(): self
     {
-        $this->setName('abv')
-            ->setWidth(10)
-            ->setHeight(10);
+        $parser = FileParserFactory::factory();
+
+        $parser->setItemData($this);
 
         return $this;
     }
