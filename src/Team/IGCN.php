@@ -13,7 +13,8 @@ class IGCN extends AbstractTeam
      * @var array
      */
     protected $seasons = [
-        Season::SEASON_15
+        Season::SEASON_6,
+        Season::SEASON_16
     ];
 
 }

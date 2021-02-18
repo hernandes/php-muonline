@@ -5,7 +5,7 @@ include 'vendor/autoload.php';
 ini_set('display_errors', 1);
 
 $team = new \MuOnline\Team\IGCN();
-$team->setSeason(\MuOnline\Team\Season::SEASON_15);
+$team->setSeason(\MuOnline\Team\Season::SEASON_16);
 
 \MuOnline\Team\Team::set($team);
 
@@ -28,9 +28,9 @@ dump($item2->make());
 
 $item3 = new \MuOnline\Item\Item(0, 0);
 $item3->setLevel(12);
-$item3->updateFromFile();
+$item3->sync();
 dump($item3);
 
 $parser = \MuOnline\Item\File\Parser\Item\ParserFactory::factory();
-
+$parser->parse();
 dump($parser);

@@ -4,7 +4,7 @@ namespace MuOnline\Item\Maker;
 use MuOnline\Item\Item;
 use MuOnline\Item\Maker;
 
-class Season15 extends Season0
+class Season16 extends Season0
 {
 
 }

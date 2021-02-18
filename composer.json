@@ -9,5 +9,9 @@
     "nunomaduro/collision": "5.0.0-BETA3",
     "pestphp/pest": "v0.2.4",
     "symfony/var-dumper": "^5.1"
+  },
+  "require": {
+    "ext-dom": "*",
+    "doctrine/cache": "^1.10"
   }
 }

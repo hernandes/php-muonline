@@ -21,7 +21,7 @@ class ParserFactory
         }
 
         if (! $class) {
-            throw new \BadMethodCallException('Class for season not implemented yet!');
+            throw new \BadMethodCallException('Class for season ' . $team->getSeasonClass() . ' of team ' . $team->getName() . ' not implemented yet!');
         }
 
         return new $class;

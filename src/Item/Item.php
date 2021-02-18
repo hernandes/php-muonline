@@ -209,6 +209,15 @@ class Item
     }
 
     /**
+     * @param int $section
+     * @return $this
+     */
+    public function section(int $section): self
+    {
+        return $this->setSection($section);
+    }
+
+    /**
      * @return int|null
      */
     public function getSection(): ?int
@@ -229,6 +238,15 @@ class Item
     }
 
     /**
+     * @param int $index
+     * @return $this
+     */
+    public function index(int $index): self
+    {
+        return $this->setIndex($index);
+    }
+
+    /**
      * @return int|null
      */
     public function getIndex(): ?int
@@ -246,6 +264,15 @@ class Item
         $this->dirty = true;
 
         return $this;
+    }
+
+    /**
+     * @param int $level
+     * @return $this
+     */
+    public function level(int $level): self
+    {
+        return $this->setLevel($level);
     }
 
     /**
@@ -278,6 +305,15 @@ class Item
         $this->dirty = true;
 
         return $this;
+    }
+
+    /**
+     * @param int $option
+     * @return $this
+     */
+    public function option(int $option): self
+    {
+        return $this->setOption($option);
     }
 
     /**
@@ -382,6 +418,15 @@ class Item
     }
 
     /**
+     * @param Durability|int $durability
+     * @return $this
+     */
+    public function durability($durability): self
+    {
+        return $this->setDurability($durability);
+    }
+
+    /**
      * @return Durability
      */
     public function getDurability(): Durability
@@ -398,6 +443,15 @@ class Item
         $this->ancient = $ancient->setItem($this);
 
         return $this;
+    }
+
+    /**
+     * @param Ancient $ancient
+     * @return $this
+     */
+    public function ancient(Ancient $ancient): self
+    {
+        return $this->setAncient($ancient);
     }
 
     /**
@@ -436,6 +490,15 @@ class Item
     }
 
     /**
+     * @param Serial $serial
+     * @return $this
+     */
+    public function serial(Serial $serial): self
+    {
+        return $this->setSerial($serial);
+    }
+
+    /**
      * @return Serial
      */
     public function getSerial(): Serial
@@ -466,6 +529,15 @@ class Item
         $this->excellent = $excellent->setItem($this);
 
         return $this;
+    }
+
+    /**
+     * @param Excellent $excellent
+     * @return $this
+     */
+    public function excellent(Excellent $excellent): self
+    {
+        return $this->setExcellent($excellent);
     }
 
     /**
@@ -517,6 +589,15 @@ class Item
     }
 
     /**
+     * @param Harmony $harmony
+     * @return $this
+     */
+    public function harmony(Harmony $harmony): self
+    {
+        return $this->setHarmony($harmony);
+    }
+
+    /**
      * @return Harmony
      */
     public function getHarmony(): Harmony
@@ -552,6 +633,15 @@ class Item
     }
 
     /**
+     * @param Refine $refine
+     * @return $this
+     */
+    public function refine(Refine $refine): self
+    {
+        return $this->setRefine($refine);
+    }
+
+    /**
      * @return Refine
      */
     public function getRefine(): Refine
@@ -582,6 +672,15 @@ class Item
         $this->socket = $socket->setItem($this);
 
         return $this;
+    }
+
+    /**
+     * @param Socket $socket
+     * @return $this
+     */
+    public function socket(Socket $socket): self
+    {
+        return $this->setSocket($socket);
     }
 
     /**
@@ -633,6 +732,15 @@ class Item
     }
 
     /**
+     * @param Mastery $mastery
+     * @return $this
+     */
+    public function mastery(Mastery $mastery): self
+    {
+        return $this->setMastery($mastery);
+    }
+
+    /**
      * @return Mastery
      */
     public function getMastery(): Mastery
@@ -653,6 +761,15 @@ class Item
         $this->time = $time;
 
         return $this;
+    }
+
+    /**
+     * @param Time $time
+     * @return $this
+     */
+    public function time(Time $time): self
+    {
+        return $this->setTime($time);
     }
 
     /**
@@ -714,7 +831,7 @@ class Item
         $parser->setHex($hex)
             ->parse($this);
 
-        $this->updateFromFile();
+        $this->sync();
 
         return $this;
     }
@@ -735,15 +852,25 @@ class Item
     }
 
     /**
+     * @param bool $durability
      * @return $this
      */
-    public function updateFromFile(): self
+    public function sync(bool $durability = false): self
     {
         $parser = FileParserFactory::factory();
 
-        $parser->setItemData($this);
+        $parser->put($this, $durability);
 
         return $this;
+    }
+
+    /**
+     * @param int $section
+     * @return bool
+     */
+    public function is(int $section): bool
+    {
+        return $this->section === $section;
     }
 
     /**
