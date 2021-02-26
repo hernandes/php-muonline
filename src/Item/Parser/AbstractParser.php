@@ -32,9 +32,9 @@ abstract class AbstractParser implements Parser
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getHex(): string
+    public function getHex(): ?string
     {
         return $this->hex;
     }
