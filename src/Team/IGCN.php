@@ -17,4 +17,12 @@ class IGCN extends AbstractTeam
         Season::SEASON_16
     ];
 
+    /**
+     * @return string
+     */
+    public function getItemFileName(): string
+    {
+        return 'ItemList.xml';
+    }
+
 }
