@@ -6,9 +6,13 @@ use MuOnline\Item\Parser\ParserFactory;
 use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
 use MuOnline\Item\File\Parser\Item\ParserFactory as FileParserFactory;
+use MuOnline\Util\DirtyTrait;
 
 class Item
 {
+
+    use DirtyTrait;
+
     /**
      * @var string
      */
@@ -105,11 +109,6 @@ class Item
     private $time;
 
     /**
-     * @var bool;
-     */
-    private $dirty = false;
-
-    /**
      * Item constructor.
      * @param int|null $section
      * @param int|null $index
@@ -202,8 +201,8 @@ class Item
      */
     public function setSection(int $section): self
     {
+        $this->addDirty($this->section, $section);
         $this->section = $section;
-        $this->dirty = true;
 
         return $this;
     }
@@ -231,8 +230,8 @@ class Item
      */
     public function setIndex(int $index): self
     {
+        $this->addDirty($this->index, $index);
         $this->index = $index;
-        $this->dirty = true;
 
         return $this;
     }
@@ -260,8 +259,8 @@ class Item
      */
     public function setLevel(int $level): self
     {
+        $this->addDirty($this->level, $level);
         $this->level = $level;
-        $this->dirty = true;
 
         return $this;
     }
@@ -289,8 +288,7 @@ class Item
      */
     public function addLevel(int $levels = 1): self
     {
-        $this->level += $levels;
-        $this->dirty = true;
+        $this->setLevel($this->level + $levels);
 
         return $this;
     }
@@ -301,8 +299,8 @@ class Item
      */
     public function setOption(int $option): self
     {
+        $this->addDirty($this->option, $option);
         $this->option = $option;
-        $this->dirty = true;
 
         return $this;
     }
@@ -330,8 +328,7 @@ class Item
      */
     public function addOption(int $options = 4): self
     {
-        $this->option += $options;
-        $this->dirty = true;
+        $this->setOption($this->option + $options);
 
         return $this;
     }
@@ -785,35 +782,6 @@ class Item
     }
 
     /**
-     * @param bool $dirty
-     * @return $this
-     */
-    public function setDirty(bool $dirty): self
-    {
-        $this->dirty = $dirty;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function addDirty(): self
-    {
-        $this->setDirty(true);
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDirty(): bool
-    {
-        return $this->dirty;
-    }
-
-    /**
      * @param string|null $hex
      * @param Parser|null $parser
      * @return $this
@@ -832,6 +800,8 @@ class Item
             ->parse($this);
 
         $this->sync();
+
+        $this->addDirty();
 
         return $this;
     }

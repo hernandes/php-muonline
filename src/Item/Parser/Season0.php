@@ -49,6 +49,8 @@ class Season0 extends AbstractParser
 
         $serial = substr($hex, 6, 8);
         $item->setSerial(new Serial($serial));
+
+        $item->setDirty(false);
     }
 
     /**
