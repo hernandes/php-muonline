@@ -1,7 +1,6 @@
 <?php
 namespace MuOnline\Item\File\Parser\Item\IGCN;
 
-use MuOnline\Item\File\FileNotFoundException;
 use MuOnline\Item\File\Parser\Item\AbstractParser;
 
 abstract class BaseParser extends AbstractParser
@@ -10,10 +9,6 @@ abstract class BaseParser extends AbstractParser
     public function parse()
     {
         $file = $this->getFilePath();
-
-        if (! file_exists($file)) {
-            throw new FileNotFoundException('File ' . $file . ' not found!');
-        }
 
         $xml = new \DOMDocument();
         $xml->load($file);

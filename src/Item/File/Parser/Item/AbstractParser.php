@@ -3,6 +3,7 @@ namespace MuOnline\Item\File\Parser\Item;
 
 use Doctrine\Common\Cache\PhpFileCache;
 use MuOnline\Item\File\File;
+use MuOnline\Item\File\FileNotFoundException;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
 
@@ -86,10 +87,17 @@ class AbstractParser implements ItemParser
 
     /**
      * @return string
+     * @throws FileNotFoundException
      */
     public function getFilePath(): string
     {
-        return File::path(ROOT . '/storage/muonline/files/igcn/ItemList.xml');
+        $file = File::path(ROOT . '/storage/muonline/files/igcn/ItemList.xml');
+
+        if (! file_exists($file)) {
+            throw new FileNotFoundException('File ' . $file . ' not found!');
+        }
+
+        return $file;
     }
 
     /**
