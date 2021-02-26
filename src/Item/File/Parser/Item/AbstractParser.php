@@ -2,6 +2,7 @@
 namespace MuOnline\Item\File\Parser\Item;
 
 use Doctrine\Common\Cache\PhpFileCache;
+use MuOnline\Item\File\File;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
 
@@ -88,7 +89,7 @@ class AbstractParser implements ItemParser
      */
     public function getFilePath(): string
     {
-        return '/Users/hernandes/MuOnline/php-muonline-item/storage/muonline/files/igcn/ItemList.xml';
+        return File::path(ROOT . '/storage/muonline/files/igcn/ItemList.xml');
     }
 
     /**
@@ -96,7 +97,7 @@ class AbstractParser implements ItemParser
      */
     public function getCachePath(): string
     {
-        return '/Users/hernandes/MuOnline/php-muonline-item/storage/muonline/cache/';
+        return ROOT . '/storage/muonline/cache/';
     }
 
     public function read()
