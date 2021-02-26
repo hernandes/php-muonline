@@ -6,6 +6,7 @@ use MuOnline\Item\File\File;
 use MuOnline\Item\File\FileNotFoundException;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
+use MuOnline\Team\Team;
 
 class AbstractParser implements ItemParser
 {
@@ -91,13 +92,7 @@ class AbstractParser implements ItemParser
      */
     public function getFilePath(): string
     {
-        $file = File::path(ROOT . '/storage/muonline/files/igcn/ItemList.xml');
-
-        if (! file_exists($file)) {
-            throw new FileNotFoundException('File ' . $file . ' not found!');
-        }
-
-        return $file;
+        return File::path(File::ITEM);
     }
 
     /**
@@ -105,10 +100,13 @@ class AbstractParser implements ItemParser
      */
     public function getCachePath(): string
     {
-        return ROOT . '/storage/muonline/cache/';
+        return storage_path('muonline' . DS . 'cache' . DS);
     }
 
-    public function read()
+    /**
+     * TODO: melhorar a verificação de quando precisa processar o parse ou não!
+     */
+    public function read(): void
     {
         $cache = new PhpFileCache($this->getCachePath());
 

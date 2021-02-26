@@ -76,4 +76,12 @@ abstract class AbstractTeam
 
         return 'Season' . $season;
     }
+
+    /**
+     * @return string
+     */
+    public function getItemFileName(): string
+    {
+        return 'ItemList.xml';
+    }
 }
