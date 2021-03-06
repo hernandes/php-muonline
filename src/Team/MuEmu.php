@@ -13,6 +13,7 @@ class MuEmu extends AbstractTeam
      * @var array
      */
     protected $seasons = [
+        Season::SEASON_6,
         Season::SEASON_16
     ];
 

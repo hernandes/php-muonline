@@ -82,6 +82,6 @@ abstract class AbstractTeam
      */
     public function getItemFileName(): string
     {
-        return 'Items.txt';
+        return 'Item.txt';
     }
 }
