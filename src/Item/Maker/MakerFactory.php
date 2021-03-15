@@ -14,7 +14,8 @@ class MakerFactory
     {
         $base = 'MuOnline\\Item\\Maker\\';
         $team = Team::current();
-        $class = $base . $team->getName() . '\\' . $team->getSeasonClass();
+        $season = $team->getSeasonClass();
+        $class = $base . $team->getName() . '\\' . $season;
 
         if (! class_exists($class)) {
             $class = $base . $team->getSeasonClass();
@@ -25,7 +26,7 @@ class MakerFactory
         }
 
         if (! $class) {
-            throw new \BadMethodCallException('Class for season not implemented yet!');
+            throw new \BadMethodCallException('Class for season ' . $base . ' of team ' . $team->getName() . ' not implemented yet!');
         }
 
         return new $class;

@@ -15,7 +15,8 @@ class ParserFactory
     {
         $base = 'MuOnline\\Item\\Parser\\';
         $team = Team::current();
-        $class = $base . $team->getName() . '\\' . $team->getSeasonClass();
+        $season = $team->getSeasonClass();
+        $class = $base . $team->getName() . '\\' . $season;
 
         if (! class_exists($class)) {
             $class = $base . $team->getSeasonClass();
@@ -26,10 +27,10 @@ class ParserFactory
         }
 
         if (! $class) {
-            throw new \BadMethodCallException('Class for season ' . $team->getSeasonClass() . ' of team ' . $team->getName() . ' not implemented yet!');
+            throw new \BadMethodCallException('Class for season ' . $base . ' of team ' . $team->getName() . ' not implemented yet!');
         }
 
-        return new $class;
+        return new $class($hex);
     }
 
 }
