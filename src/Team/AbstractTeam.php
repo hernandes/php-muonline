@@ -90,9 +90,6 @@ abstract class AbstractTeam
     public function getSeasonClass(): string
     {
         $season = $this->getSeason();
-        if ($season !== Season::SEASON_0) {
-            $season = $season / 10;
-        }
 
         return 'Season' . $season;
     }

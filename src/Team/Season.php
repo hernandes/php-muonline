@@ -5,21 +5,21 @@ class Season
 {
 
     const SEASON_0 = 0;
-    const SEASON_1 = 10;
-    const SEASON_2 = 20;
-    const SEASON_3 = 30;
-    const SEASON_4 = 40;
-    const SEASON_5 = 50;
-    const SEASON_6 = 60;
-    const SEASON_7 = 70;
-    const SEASON_8 = 80;
-    const SEASON_9 = 90;
-    const SEASON_10 = 100;
-    const SEASON_11 = 110;
-    const SEASON_12 = 120;
-    const SEASON_13 = 130;
-    const SEASON_14 = 140;
-    const SEASON_15 = 150;
-    const SEASON_16 = 160;
+    const SEASON_1 = 1;
+    const SEASON_2 = 2;
+    const SEASON_3 = 3;
+    const SEASON_4 = 4;
+    const SEASON_5 = 5;
+    const SEASON_6 = 6;
+    const SEASON_7 = 7;
+    const SEASON_8 = 8;
+    const SEASON_9 = 9;
+    const SEASON_10 = 10;
+    const SEASON_11 = 11;
+    const SEASON_12 = 12;
+    const SEASON_13 = 13;
+    const SEASON_14 = 14;
+    const SEASON_15 = 15;
+    const SEASON_16 = 16;
 
 }
