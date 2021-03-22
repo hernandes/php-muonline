@@ -4,8 +4,7 @@ include 'vendor/autoload.php';
 
 ini_set('display_errors', 1);
 
-$team = new \MuOnline\Team\IGCN();
-$team->setSeason(\MuOnline\Team\Season::SEASON_16);
+$team = new \MuOnline\Team\Louis(\MuOnline\Team\Season::SEASON_6);
 
 \MuOnline\Team\Team::set($team);
 

@@ -131,6 +131,15 @@ class Item
     }
 
     /**
+     * @param string $hex
+     * @return $this
+     */
+    public function hex(string $hex): self
+    {
+        return $this->setHex($hex);
+    }
+
+    /**
      * @return string|null
      */
     public function getHex(): ?string
@@ -150,6 +159,15 @@ class Item
     }
 
     /**
+     * @param string $name
+     * @return $this
+     */
+    public function name(string $name): self
+    {
+        return $this->setName($name);
+    }
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -166,6 +184,15 @@ class Item
         $this->width = $width;
 
         return $this;
+    }
+
+    /**
+     * @param int $width
+     * @return $this
+     */
+    public function width(int $width): self
+    {
+        return $this->setWidth($width);
     }
 
     /**
@@ -193,6 +220,15 @@ class Item
     public function getHeight(): string
     {
         return $this->height;
+    }
+
+    /**
+     * @param int $height
+     * @return $this
+     */
+    public function height(int $height): self
+    {
+        return $this->setHeight($height);
     }
 
     /**
@@ -829,7 +865,7 @@ class Item
     {
         $parser = FileParserFactory::factory();
 
-        $parser->put($this, $durability);
+        $parser->sync($this, $durability);
 
         return $this;
     }

@@ -6,7 +6,6 @@ use MuOnline\Item\File\File;
 use MuOnline\Item\File\FileNotFoundException;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
-use MuOnline\Team\Team;
 
 class AbstractParser implements ItemParser
 {
@@ -65,10 +64,15 @@ class AbstractParser implements ItemParser
      * @param bool $durability
      * @return $this
      */
-    public function put(Item $item, bool $durability = false): self
+    public function sync(Item $item, bool $durability = false): self
     {
         $section = $item->getSection();
         $index = $item->getIndex();
+
+        if (is_null($section) || is_null($index)) {
+            throw new \RuntimeException('No item instantiated');
+        }
+
         $data = $this->getItem($section, $index);
 
         if (! $data) {

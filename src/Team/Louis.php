@@ -1,20 +1,21 @@
 <?php
 namespace MuOnline\Team;
 
-class MuEmu extends AbstractTeam
+class Louis extends AbstractTeam
 {
 
     /**
      * @var string
      */
-    protected $name = 'MuEmu';
+    protected $name = 'Louis';
 
     /**
      * @var array
      */
     protected $seasons = [
+        Season::SEASON_4,
         Season::SEASON_6,
-        Season::SEASON_16
+        Season::SEASON_8
     ];
 
 }

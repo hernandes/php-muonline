@@ -1,10 +1,8 @@
 <?php
-namespace MuOnline\Item\Parser;
+namespace MuOnline\Item\Parser\Louis;
 
 use MuOnline\Item\Item;
-use MuOnline\Item\Luck;
-use MuOnline\Item\Serial;
-use MuOnline\Item\Skill;
+use MuOnline\Item\Parser\AbstractParser;
 
 class Season6 extends AbstractParser
 {
@@ -16,7 +14,10 @@ class Season6 extends AbstractParser
     public function parse(Item $item)
     {
         $hex = $this->getHex();
-        $item->setHex($hex);
+        $item->hex($hex);
+
+        $item->index(0);
+        $item->section(0);
 
         $item->setDirty(false);
     }

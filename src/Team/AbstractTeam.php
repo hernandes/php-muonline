@@ -20,6 +20,17 @@ abstract class AbstractTeam
     protected $season = Season::SEASON_0;
 
     /**
+     * AbstractTeam constructor.
+     * @param int|null $season
+     */
+    public function __construct(?int $season = null)
+    {
+        if ($season) {
+            $this->setSeason($season);
+        }
+    }
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -57,6 +68,15 @@ abstract class AbstractTeam
     }
 
     /**
+     * @param int $season
+     * @return $this
+     */
+    public function season(int $season): self
+    {
+        return $this->setSeason($season);
+    }
+
+    /**
      * @return int
      */
     public function getSeason(): int
@@ -75,6 +95,30 @@ abstract class AbstractTeam
         }
 
         return 'Season' . $season;
+    }
+
+    /**
+     * @param $namespace
+     * @return string
+     */
+    public function getClassFor($namespace): string
+    {
+        $season = $this->getSeasonClass();
+        $class = $namespace . $this->getName() . '\\' . $season;
+
+        if (! class_exists($class)) {
+            $class = $namespace . $season;
+
+            if (! class_exists($class)) {
+                $class = null;
+            }
+        }
+
+        if (! $class) {
+            throw new \BadMethodCallException('Class for season ' . $season . ' of team ' . $this->getName() . ' not implemented yet!');
+        }
+
+        return $class;
     }
 
     /**
