@@ -9,20 +9,28 @@ class Team
      */
     private static $current;
 
-    /**
-     * @param AbstractTeam $team
-     */
     public static function set(AbstractTeam $team)
     {
         static::$current = $team;
     }
 
-    /**
-     * @return AbstractTeam
-     */
     public static function current(): AbstractTeam
     {
         return static::$current;
+    }
+
+    public static function factory(string $team, ?int $season = null): AbstractTeam
+    {
+        $teams = [
+            'igcn' => new IGCN($season),
+            'louis' => new Louis($season)
+        ];
+
+        if (! isset($teams[$team])) {
+            throw new \RuntimeException("Team $team not found");
+        }
+
+        return $teams[$team];
     }
 
 }

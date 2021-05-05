@@ -27,7 +27,7 @@ abstract class BaseParser extends AbstractParser
     ];
 
     /**
-     * @throws \MuOnline\Item\File\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public function parse()
     {
@@ -38,10 +38,10 @@ abstract class BaseParser extends AbstractParser
         }
 
         $section = -1;
-        while (!feof($file)) {
+        while (! feof($file)) {
             $line = trim(fgets($file), " \t\r\n");
 
-            if (substr($line, 0, 2) == '//' || substr($line, 0, 2) == '#' || $line == '') {
+            if (substr($line, 0, 2) === '//' || substr($line, 0, 2) === '#' || $line === '') {
                 continue;
             }
 
@@ -50,9 +50,9 @@ abstract class BaseParser extends AbstractParser
             }
             $line = trim($line, " \t\r\n");
 
-            if ($section == -1) {
+            if ($section === -1) {
                 if (is_numeric($line)) {
-                    $section = $line;
+                    $section = (int) $line;
                 }
             } else {
                 if (strtolower($line) == 'end') {

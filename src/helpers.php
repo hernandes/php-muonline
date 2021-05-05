@@ -9,7 +9,7 @@ if (! defined('DS')) {
 }
 
 if (! function_exists('storage_path')) {
-    function storage_path($path = null)
+    function storage_path($path = null): string
     {
         return ROOT . DS . 'storage' . DS . $path;
     }

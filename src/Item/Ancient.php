@@ -64,7 +64,7 @@ class Ancient
     /**
      * @return int|null
      */
-    public function getStamina()
+    public function getStamina(): ?int
     {
         return $this->stamina;
     }
