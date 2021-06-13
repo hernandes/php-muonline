@@ -7,7 +7,7 @@ use MuOnline\Item\File\Parser\Item\AbstractParser;
 abstract class BaseParser extends AbstractParser
 {
 
-    protected $categories = [
+    protected array $categories = [
         0 => 'Swords',
         1 => 'Axes',
         2 => 'Scepters',
@@ -29,7 +29,7 @@ abstract class BaseParser extends AbstractParser
     /**
      * @throws FileNotFoundException
      */
-    public function parse()
+    public function parse(): void
     {
         $file = $this->getFilePath();
 

@@ -11,7 +11,7 @@ class Season6 extends AbstractParser
      * @param Item $item
      * @return void
      */
-    public function parse(Item $item)
+    public function parse(Item $item): void
     {
         $hex = $this->getHex();
         $item->hex($hex);

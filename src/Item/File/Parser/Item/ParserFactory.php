@@ -7,9 +7,6 @@ use MuOnline\Team\Team;
 class ParserFactory
 {
 
-    /**
-     * @return Item
-     */
     public static function factory(): Item
     {
         $class = Team::current()->getClassFor('MuOnline\\Item\\File\\Parser\\Item\\');

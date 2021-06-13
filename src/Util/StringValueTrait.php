@@ -4,15 +4,8 @@ namespace MuOnline\Util;
 trait StringValueTrait
 {
 
-    /**
-     * @var string
-     */
-    private $value;
+    private ?string $value;
 
-    /**
-     * @param string|null $value
-     * @return $this
-     */
     public function set(?string $value): self
     {
         $this->value = $value;
@@ -20,9 +13,6 @@ trait StringValueTrait
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function get(): ?string
     {
         return $this->value;

@@ -43,7 +43,7 @@ abstract class AbstractParser implements Parser
      * @param Item $item
      * @return mixed|void
      */
-    public function parse(Item $item)
+    public function parse(Item $item): void
     {
         throw new \BadMethodCallException('Method parse not implemented yet!');
     }

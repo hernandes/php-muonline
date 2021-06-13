@@ -7,10 +7,6 @@ use MuOnline\Team\Team;
 class ParserFactory
 {
 
-    /**
-     * @param string|null $hex
-     * @return Parser
-     */
     public static function factory(string $hex = null): Parser
     {
         $class = Team::current()->getClassFor('MuOnline\\Item\\Parser\\');

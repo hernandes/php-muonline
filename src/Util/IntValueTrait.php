@@ -4,15 +4,8 @@ namespace MuOnline\Util;
 trait IntValueTrait
 {
 
-    /**
-     * @var int
-     */
-    private $value;
+    private ?int $value;
 
-    /**
-     * @param int|null $value
-     * @return $this
-     */
     public function set(?int $value): self
     {
         $this->value = $value;
@@ -20,9 +13,6 @@ trait IntValueTrait
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function get(): ?int
     {
         return $this->value;

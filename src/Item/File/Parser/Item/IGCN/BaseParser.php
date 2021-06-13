@@ -6,7 +6,7 @@ use MuOnline\Item\File\Parser\Item\AbstractParser;
 abstract class BaseParser extends AbstractParser
 {
 
-    public function parse()
+    public function parse(): void
     {
         $file = $this->getFilePath();
 

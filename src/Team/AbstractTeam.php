@@ -4,25 +4,10 @@ namespace MuOnline\Team;
 abstract class AbstractTeam
 {
 
-    /**
-     * @var string
-     */
-    protected $name = null;
+    protected string $name;
+    protected array $seasons = [];
+    protected int $season = Season::SEASON_0;
 
-    /**
-     * @var array
-     */
-    protected $seasons = [];
-
-    /**
-     * @var int
-     */
-    protected $season = Season::SEASON_0;
-
-    /**
-     * AbstractTeam constructor.
-     * @param int|null $season
-     */
     public function __construct(?int $season = null)
     {
         if ($season) {
@@ -30,9 +15,6 @@ abstract class AbstractTeam
         }
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         if (! $this->name) {
@@ -44,18 +26,11 @@ abstract class AbstractTeam
         return $this->name;
     }
 
-    /**
-     * @return array
-     */
     public function getSupportedSeasons(): array
     {
         return $this->seasons;
     }
 
-    /**
-     * @param int $season
-     * @return $this
-     */
     public function setSeason(int $season): self
     {
         if (! in_array($season, $this->getSupportedSeasons())) {
@@ -67,26 +42,16 @@ abstract class AbstractTeam
         return $this;
     }
 
-    /**
-     * @param int $season
-     * @return $this
-     */
     public function season(int $season): self
     {
         return $this->setSeason($season);
     }
 
-    /**
-     * @return int
-     */
     public function getSeason(): int
     {
         return $this->season;
     }
 
-    /**
-     * @return string
-     */
     public function getSeasonClass(): string
     {
         $season = $this->getSeason();
@@ -94,10 +59,6 @@ abstract class AbstractTeam
         return 'Season' . $season;
     }
 
-    /**
-     * @param $namespace
-     * @return string
-     */
     public function getClassFor($namespace): string
     {
         $season = $this->getSeasonClass();
@@ -118,9 +79,6 @@ abstract class AbstractTeam
         return $class;
     }
 
-    /**
-     * @return string
-     */
     public function getItemFileName(): string
     {
         return 'Item.txt';

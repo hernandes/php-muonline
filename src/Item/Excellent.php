@@ -7,19 +7,10 @@ use MuOnline\Util\ItemValueTrait;
 
 class Excellent
 {
-
     use ItemValueTrait;
 
-    /**
-     * @var array<Slot>
-     */
-    private $slots = [];
+    private array $slots = [];
 
-    /**
-     * @param $position
-     * @param Slot $slot
-     * @return $this
-     */
     public function add($position, Slot $slot): self
     {
         $this->slots[$position] = $slot;
@@ -27,10 +18,6 @@ class Excellent
         return $this;
     }
 
-    /**
-     * @param $index
-     * @return Slot
-     */
     public function getSlot($index): Slot
     {
         $slot = $this->slots[$index] ?? null;

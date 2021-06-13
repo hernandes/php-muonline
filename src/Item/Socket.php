@@ -7,24 +7,16 @@ use MuOnline\Util\ItemValueTrait;
 
 class Socket
 {
-
     use ItemValueTrait;
 
-    /**
-     * @var array<Slot>
-     */
-    private $slots = [];
+    private array $slots = [];
+    private Bonus $bonus;
 
-    /**
-     * @var Bonus
-     */
-    private $bonus;
+    public function __construct()
+    {
+        $this->bonus = new Bonus();
+    }
 
-    /**
-     * @param $position
-     * @param Slot $slot
-     * @return $this
-     */
     public function add($position, Slot $slot): self
     {
         $this->slots[$position] = $slot;
@@ -32,10 +24,6 @@ class Socket
         return $this;
     }
 
-    /**
-     * @param int $index
-     * @return Slot
-     */
     public function getSlot(int $index): Slot
     {
         $slot = $this->slots[$index] ?? null;
@@ -47,10 +35,6 @@ class Socket
         return $slot;
     }
 
-    /**
-     * @param Bonus $bonus
-     * @return $this
-     */
     public function setBonus(Bonus $bonus): self
     {
         $this->bonus = $bonus;
@@ -58,9 +42,6 @@ class Socket
         return $this;
     }
 
-    /**
-     * @return Bonus
-     */
     public function getBonus(): Bonus
     {
         if (! $this->bonus) {

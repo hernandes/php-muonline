@@ -4,12 +4,9 @@ namespace MuOnline\Team;
 class Team
 {
 
-    /**
-     * @var AbstractTeam
-     */
-    private static $current;
+    private static AbstractTeam $current;
 
-    public static function set(AbstractTeam $team)
+    public static function set(AbstractTeam $team): void
     {
         static::$current = $team;
     }

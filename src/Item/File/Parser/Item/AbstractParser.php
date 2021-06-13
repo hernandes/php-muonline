@@ -10,24 +10,14 @@ use MuOnline\Item\Item;
 class AbstractParser implements ItemParser
 {
 
-    /**
-     * @var array
-     */
-    protected $items = [];
+    protected array $items = [];
+    protected array $categories = [];
 
-    /**
-     * @var array
-     */
-    protected $categories = [];
-
-    public function parse()
+    public function parse(): void
     {
         throw new \BadMethodCallException('Method parse not implemented yet!');
     }
 
-    /**
-     * @return array
-     */
     public function getItems(): array
     {
         $this->read();
@@ -35,11 +25,6 @@ class AbstractParser implements ItemParser
         return $this->items;
     }
 
-    /**
-     * @param int $section
-     * @param int $index
-     * @return array|null
-     */
     public function getItem(int $section, int $index): ?array
     {
         $items = $this->getItems();
@@ -51,19 +36,11 @@ class AbstractParser implements ItemParser
         return null;
     }
 
-    /**
-     * @return array
-     */
     public function getCategories(): array
     {
         return $this->categories;
     }
 
-    /**
-     * @param Item $item
-     * @param bool $durability
-     * @return $this
-     */
     public function sync(Item $item, bool $durability = false): self
     {
         $section = $item->getSection();
@@ -90,18 +67,11 @@ class AbstractParser implements ItemParser
         return $this;
     }
 
-    /**
-     * @return string
-     * @throws FileNotFoundException
-     */
     public function getFilePath(): string
     {
         return File::path(File::ITEM);
     }
 
-    /**
-     * @return string
-     */
     public function getCachePath(): string
     {
         return storage_path('muonline' . DS . 'cache' . DS);

@@ -8,11 +8,6 @@ class File
 
     const ITEM = 0;
 
-    /**
-     * @param int $type
-     * @return string
-     * @throws FileNotFoundException
-     */
     public static function path(int $type): string
     {
         $fileName = static::translateFileName($type);
@@ -37,10 +32,6 @@ class File
         throw new FileNotFoundException('File ' . $fileName . ' not found!');
     }
 
-    /**
-     * @param $type
-     * @return string|null
-     */
     private static function translateFileName($type): ?string
     {
         $team = Team::current();
