@@ -1,6 +1,8 @@
 <?php
 namespace MuOnline\Team;
 
+use RuntimeException;
+
 class Team
 {
 
@@ -24,7 +26,7 @@ class Team
         ];
 
         if (! isset($teams[$team])) {
-            throw new \RuntimeException("Team $team not found");
+            throw new RuntimeException("Team $team not found");
         }
 
         return $teams[$team];

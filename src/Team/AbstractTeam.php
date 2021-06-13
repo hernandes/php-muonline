@@ -1,6 +1,10 @@
 <?php
 namespace MuOnline\Team;
 
+use ReflectionClass;
+use RuntimeException;
+use BadMethodCallException;
+
 abstract class AbstractTeam
 {
 
@@ -18,9 +22,7 @@ abstract class AbstractTeam
     public function getName(): string
     {
         if (! $this->name) {
-            try {
-                $this->name = (new \ReflectionClass($this))->getShortName();
-            } catch (\ReflectionException $ignore) {}
+            $this->name = (new ReflectionClass($this))->getShortName();
         }
 
         return $this->name;
@@ -34,7 +36,7 @@ abstract class AbstractTeam
     public function setSeason(int $season): self
     {
         if (! in_array($season, $this->getSupportedSeasons())) {
-            throw new \RuntimeException('Season not supported for this team');
+            throw new RuntimeException('Season not supported for this team');
         }
 
         $this->season = $season;
@@ -73,7 +75,7 @@ abstract class AbstractTeam
         }
 
         if (! $class) {
-            throw new \BadMethodCallException('Class for season ' . $season . ' of team ' . $this->getName() . ' not implemented yet!');
+            throw new BadMethodCallException('Class for season ' . $season . ' of team ' . $this->getName() . ' not implemented yet!');
         }
 
         return $class;

@@ -3,13 +3,14 @@ namespace MuOnline\Item\Maker;
 
 use MuOnline\Item\Item;
 use MuOnline\Item\Maker;
+use BadMethodCallException;
 
 abstract class AbstractMaker implements Maker
 {
 
     public function make(Item $item): string
     {
-        throw new \BadMethodCallException('Method make not implemented yet!');
+        throw new BadMethodCallException('Method make not implemented yet!');
     }
 
     protected function pad($string, $size = 2): string

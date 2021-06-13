@@ -59,7 +59,7 @@ abstract class BaseParser extends AbstractParser
                     $section = -1;
                     continue;
                 } else {
-                    $columns = preg_split("/[\s,]*\\\"([^\\\"]+)\\\"[\s,]*|[\s,]*'([^']+)'[\s,]*|[\s,]+/", $line, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+                    $columns = preg_split("/[\s,]*\"([^\"]+)\"[\s,]*|[\s,]*'([^']+)'[\s,]*|[\s,]+/", $line, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
                     $data = [
                         'type' => $columns[0],

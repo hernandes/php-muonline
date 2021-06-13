@@ -8,6 +8,9 @@ class File
 
     const ITEM = 0;
 
+    /**
+     * @throws FileNotFoundException
+     */
     public static function path(int $type): string
     {
         $fileName = static::translateFileName($type);

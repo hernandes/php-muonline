@@ -3,6 +3,7 @@ namespace MuOnline\Item\Parser;
 
 use MuOnline\Item\Item;
 use MuOnline\Item\Parser;
+use BadMethodCallException;
 
 abstract class AbstractParser implements Parser
 {
@@ -45,7 +46,7 @@ abstract class AbstractParser implements Parser
      */
     public function parse(Item $item): void
     {
-        throw new \BadMethodCallException('Method parse not implemented yet!');
+        throw new BadMethodCallException('Method parse not implemented yet!');
     }
 
 }

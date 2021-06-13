@@ -1,7 +1,9 @@
 <?php
 namespace MuOnline\Item\File;
 
-class FileNotFoundException extends \Exception
+use Exception;
+
+class FileNotFoundException extends Exception
 {
 
 }

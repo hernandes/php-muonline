@@ -2,15 +2,20 @@
 namespace MuOnline\Item\File\Parser\Item\IGCN;
 
 use MuOnline\Item\File\Parser\Item\AbstractParser;
+use MuOnline\Item\File\FileNotFoundException;
+use DOMDocument;
 
 abstract class BaseParser extends AbstractParser
 {
 
+    /**
+     * @throws FileNotFoundException
+     */
     public function parse(): void
     {
         $file = $this->getFilePath();
 
-        $xml = new \DOMDocument();
+        $xml = new DOMDocument();
         $xml->load($file);
 
         foreach ($xml->getElementsByTagName('Section') as $section) {

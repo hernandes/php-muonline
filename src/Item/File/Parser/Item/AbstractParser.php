@@ -3,9 +3,11 @@ namespace MuOnline\Item\File\Parser\Item;
 
 use Doctrine\Common\Cache\PhpFileCache;
 use MuOnline\Item\File\File;
-use MuOnline\Item\File\FileNotFoundException;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
+use BadMethodCallException;
+use RuntimeException;
+use MuOnline\Item\File\FileNotFoundException;
 
 class AbstractParser implements ItemParser
 {
@@ -15,7 +17,7 @@ class AbstractParser implements ItemParser
 
     public function parse(): void
     {
-        throw new \BadMethodCallException('Method parse not implemented yet!');
+        throw new BadMethodCallException('Method parse not implemented yet!');
     }
 
     public function getItems(): array
@@ -47,13 +49,13 @@ class AbstractParser implements ItemParser
         $index = $item->getIndex();
 
         if (is_null($section) || is_null($index)) {
-            throw new \RuntimeException('No item instantiated');
+            throw new RuntimeException('No item instantiated');
         }
 
         $data = $this->getItem($section, $index);
 
         if (! $data) {
-            throw new \RuntimeException('No item found for ' . $section . ' - ' . $index);
+            throw new RuntimeException('No item found for ' . $section . ' - ' . $index);
         }
 
         $item->setName($data['name'])
@@ -67,6 +69,9 @@ class AbstractParser implements ItemParser
         return $this;
     }
 
+    /**
+     * @throws FileNotFoundException
+     */
     public function getFilePath(): string
     {
         return File::path(File::ITEM);
