@@ -9,7 +9,7 @@ $team = \MuOnline\Team\Team::factory('louis', 6);
 \MuOnline\Team\Team::set($team);
 
 $item = (new \MuOnline\Item\Item(0, 0));
-$item->setDurability(20)
+$item->setDurability(new \MuOnline\Item\Durability(20))
     ->addSkill()
     ->addAncient(1, 5)
     ->addHarmony(20, 40)

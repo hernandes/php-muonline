@@ -2,12 +2,10 @@
 namespace MuOnline\Item;
 
 use MuOnline\Util\BoolValueTrait;
-use MuOnline\Util\ItemValueTrait;
 
 class Refine
 {
-    use ItemValueTrait,
-        BoolValueTrait;
+    use BoolValueTrait;
 
     public function __construct(bool $value = false)
     {

@@ -6,8 +6,7 @@ use MuOnline\Util\ItemValueTrait;
 
 class Luck
 {
-    use ItemValueTrait,
-        BoolValueTrait;
+    use BoolValueTrait;
 
     public function __construct(bool $value = false)
     {

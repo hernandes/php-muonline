@@ -5,6 +5,7 @@ use MuOnline\Item\Item;
 
 trait ItemValueTrait
 {
+
     private Item $item;
 
     public function setItem(Item $item): self
@@ -18,6 +19,11 @@ trait ItemValueTrait
     public function getItem(): Item
     {
         return $this->item;
+    }
+
+    public function attachItem(Item $item): self
+    {
+        return $this->setItem($item);
     }
 
 }

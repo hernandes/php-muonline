@@ -5,6 +5,7 @@ use MuOnline\Item\Maker\MakerFactory;
 use MuOnline\Item\Parser\ParserFactory;
 use MuOnline\Item\Socket\Slot as SocketSlot;
 use MuOnline\Item\Excellent\Slot as ExcellentSlot;
+use MuOnline\Item\Mastery\Slot as MasterySlot;
 use MuOnline\Item\File\Parser\Item\ParserFactory as FileParserFactory;
 use MuOnline\Util\DirtyTrait;
 
@@ -37,17 +38,17 @@ class Item
         $this->section = $section;
         $this->index = $index;
 
-        $this->luck = (new Luck())->setItem($this);
-        $this->skill = (new Skill())->setItem($this);
-        $this->durability = (new Durability())->setItem($this);
-        $this->excellent = (new Excellent())->setItem($this);
-        $this->serial = (new Serial())->setItem($this);
-        $this->ancient = (new Ancient())->setItem($this);
-        $this->refine = (new Refine())->setItem($this);
-        $this->harmony = (new Harmony())->setItem($this);
-        $this->socket = (new Socket())->setItem($this);
-        $this->mastery = (new Mastery())->setItem($this);
-        $this->time = (new Time())->setItem($this);
+        $this->luck = new Luck();
+        $this->skill = new Skill();
+        $this->durability = new Durability();
+        $this->excellent = new Excellent();
+        $this->serial = new Serial();
+        $this->ancient = new Ancient();
+        $this->refine = new Refine();
+        $this->harmony = new Harmony();
+        $this->socket = new Socket();
+        $this->mastery = new Mastery();
+        $this->time = new Time();
     }
 
     public function setHex(string $hex): self
@@ -212,10 +213,6 @@ class Item
 
     public function getLuck(): Luck
     {
-        if (! $this->luck) {
-            $this->luck = (new Luck())->setItem($this);
-        }
-
         return $this->luck;
     }
 
@@ -235,10 +232,6 @@ class Item
 
     public function getSkill(): Skill
     {
-        if (! $this->skill) {
-            $this->skill = (new Skill())->setItem($this);
-        }
-
         return $this->skill;
     }
 
@@ -249,18 +242,14 @@ class Item
         return $this;
     }
 
-    public function setDurability($durability): self
+    public function setDurability(Durability $durability): self
     {
-        if (! $durability instanceof Durability) {
-            $durability = new Durability($durability);
-        }
-
-        $this->durability = $durability->setItem($this);
+        $this->durability = $durability;
 
         return $this;
     }
 
-    public function durability($durability): self
+    public function durability(Durability $durability): self
     {
         return $this->setDurability($durability);
     }
@@ -284,10 +273,6 @@ class Item
 
     public function getAncient(): Ancient
     {
-        if (! $this->ancient) {
-            $this->ancient = (new Ancient())->setItem($this);
-        }
-
         return $this->ancient;
     }
 
@@ -312,10 +297,6 @@ class Item
 
     public function getSerial(): Serial
     {
-        if (! $this->serial) {
-            $this->serial = (new Serial())->setItem($this);
-        }
-
         return $this->serial;
     }
 
@@ -340,10 +321,6 @@ class Item
 
     public function getExcellent(): Excellent
     {
-        if (! $this->excellent) {
-            $this->excellent = (new Excellent())->setItem($this);
-        }
-
         return $this->excellent;
     }
 
@@ -354,10 +331,6 @@ class Item
 
     public function addExcellentInSlot(int $index, $slot): self
     {
-        if (! $slot instanceof ExcellentSlot) {
-            $slot = new ExcellentSlot($slot);
-        }
-
         $this->getExcellent()->add($index, $slot);
 
         return $this;
@@ -377,10 +350,6 @@ class Item
 
     public function getHarmony(): Harmony
     {
-        if (! $this->harmony) {
-            $this->harmony = (new Harmony())->setItem($this);
-        }
-
         return $this->harmony;
     }
 
@@ -405,10 +374,6 @@ class Item
 
     public function getRefine(): Refine
     {
-        if (! $this->refine) {
-            $this->refine = (new Refine())->setItem($this);
-        }
-
         return $this->refine;
     }
 
@@ -433,10 +398,6 @@ class Item
 
     public function getSocket(): Socket
     {
-        if (! $this->socket) {
-            $this->socket = (new Socket())->setItem($this);
-        }
-
         return $this->socket;
     }
 
@@ -447,10 +408,6 @@ class Item
 
     public function addSocketInSlot(int $index, $slot): self
     {
-        if (! $slot instanceof SocketSlot) {
-            $slot = (new SocketSlot())->parse($slot);
-        }
-
         $this->getSocket()->add($index, $slot);
 
         return $this;
@@ -477,6 +434,18 @@ class Item
         return $this->mastery;
     }
 
+    public function addMasteryInSlot(int $index, $slot): self
+    {
+        $this->getMastery()->add($index, $slot);
+
+        return $this;
+    }
+
+    public function getMasterySlot(int $index): MasterySlot
+    {
+        return $this->getMastery()->getSlot($index);
+    }
+
     public function setTime(Time $time): self
     {
         $this->time = $time;
@@ -491,10 +460,6 @@ class Item
 
     public function getTime(): Time
     {
-        if (! $this->time) {
-            $this->time = (new Time())->setItem($this);
-        }
-
         return $this->time;
     }
 

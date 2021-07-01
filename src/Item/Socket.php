@@ -17,8 +17,12 @@ class Socket
         $this->bonus = new Bonus();
     }
 
-    public function add($position, Slot $slot): self
+    public function add($position, $slot): self
     {
+        if (! $slot instanceof Slot) {
+            $slot = new Slot($slot);
+        }
+
         $this->slots[$position] = $slot;
 
         return $this;

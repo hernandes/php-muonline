@@ -63,7 +63,7 @@ class AbstractParser implements ItemParser
             ->setHeight($data['height']);
 
         if ($durability) {
-            $item->setDurability($data['durability']);
+            $item->getDurability()->set($data['durability']);
         }
 
         return $this;

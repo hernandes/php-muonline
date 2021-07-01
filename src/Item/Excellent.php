@@ -3,16 +3,18 @@
 namespace MuOnline\Item;
 
 use MuOnline\Item\Excellent\Slot;
-use MuOnline\Util\ItemValueTrait;
 
 class Excellent
 {
-    use ItemValueTrait;
 
     private array $slots = [];
 
-    public function add($position, Slot $slot): self
+    public function add(int $position, $slot): self
     {
+        if (! $slot instanceof Slot) {
+            $slot = new Slot($slot);
+        }
+
         $this->slots[$position] = $slot;
 
         return $this;
