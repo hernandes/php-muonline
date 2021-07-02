@@ -44,11 +44,6 @@ abstract class AbstractTeam
         return $this;
     }
 
-    public function season(int $season): self
-    {
-        return $this->setSeason($season);
-    }
-
     public function getSeason(): int
     {
         return $this->season;

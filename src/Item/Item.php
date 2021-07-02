@@ -58,11 +58,6 @@ class Item
         return $this;
     }
 
-    public function hex(string $hex): self
-    {
-        return $this->setHex($hex);
-    }
-
     public function getHex(): ?string
     {
         return $this->hex;
@@ -73,10 +68,6 @@ class Item
         $this->name = $name;
 
         return $this;
-    }
-    public function name(string $name): self
-    {
-        return $this->setName($name);
     }
 
     public function getName(): string
@@ -89,11 +80,6 @@ class Item
         $this->width = $width;
 
         return $this;
-    }
-
-    public function width(int $width): self
-    {
-        return $this->setWidth($width);
     }
 
     public function getWidth(): string
@@ -113,22 +99,12 @@ class Item
         return $this->height;
     }
 
-    public function height(int $height): self
-    {
-        return $this->setHeight($height);
-    }
-
     public function setSection(int $section): self
     {
         $this->addDirty($this->section, $section);
         $this->section = $section;
 
         return $this;
-    }
-
-    public function section(int $section): self
-    {
-        return $this->setSection($section);
     }
 
     public function getSection(): ?int
@@ -144,11 +120,6 @@ class Item
         return $this;
     }
 
-    public function index(int $index): self
-    {
-        return $this->setIndex($index);
-    }
-
     public function getIndex(): ?int
     {
         return $this->index;
@@ -160,11 +131,6 @@ class Item
         $this->level = $level;
 
         return $this;
-    }
-
-    public function level(int $level): self
-    {
-        return $this->setLevel($level);
     }
 
     public function getLevel(): int
@@ -185,11 +151,6 @@ class Item
         $this->option = $option;
 
         return $this;
-    }
-
-    public function option(int $option): self
-    {
-        return $this->setOption($option);
     }
 
     public function getOption(): int
@@ -249,11 +210,6 @@ class Item
         return $this;
     }
 
-    public function durability(Durability $durability): self
-    {
-        return $this->setDurability($durability);
-    }
-
     public function getDurability(): Durability
     {
         return $this->durability;
@@ -264,11 +220,6 @@ class Item
         $this->ancient = $ancient->setItem($this);
 
         return $this;
-    }
-
-    public function ancient(Ancient $ancient): self
-    {
-        return $this->setAncient($ancient);
     }
 
     public function getAncient(): Ancient
@@ -290,11 +241,6 @@ class Item
         return $this;
     }
 
-    public function serial(Serial $serial): self
-    {
-        return $this->setSerial($serial);
-    }
-
     public function getSerial(): Serial
     {
         return $this->serial;
@@ -312,11 +258,6 @@ class Item
         $this->excellent = $excellent->setItem($this);
 
         return $this;
-    }
-
-    public function excellent(Excellent $excellent): self
-    {
-        return $this->setExcellent($excellent);
     }
 
     public function getExcellent(): Excellent
@@ -343,11 +284,6 @@ class Item
         return $this;
     }
 
-    public function harmony(Harmony $harmony): self
-    {
-        return $this->setHarmony($harmony);
-    }
-
     public function getHarmony(): Harmony
     {
         return $this->harmony;
@@ -367,11 +303,6 @@ class Item
         return $this;
     }
 
-    public function refine(Refine $refine): self
-    {
-        return $this->setRefine($refine);
-    }
-
     public function getRefine(): Refine
     {
         return $this->refine;
@@ -389,11 +320,6 @@ class Item
         $this->socket = $socket->setItem($this);
 
         return $this;
-    }
-
-    public function socket(Socket $socket): self
-    {
-        return $this->setSocket($socket);
     }
 
     public function getSocket(): Socket
@@ -418,11 +344,6 @@ class Item
         $this->mastery = $mastery;
 
         return $this;
-    }
-
-    public function mastery(Mastery $mastery): self
-    {
-        return $this->setMastery($mastery);
     }
 
     public function getMastery(): Mastery
@@ -451,11 +372,6 @@ class Item
         $this->time = $time;
 
         return $this;
-    }
-
-    public function time(Time $time): self
-    {
-        return $this->setTime($time);
     }
 
     public function getTime(): Time
