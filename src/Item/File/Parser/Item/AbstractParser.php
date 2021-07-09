@@ -1,13 +1,15 @@
 <?php
 namespace MuOnline\Item\File\Parser\Item;
 
-use Doctrine\Common\Cache\PhpFileCache;
 use MuOnline\Item\File\File;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
 use BadMethodCallException;
+use Nette\Caching\Cache;
+use Nette\Caching\Storages\FileStorage;
 use RuntimeException;
 use MuOnline\Item\File\FileNotFoundException;
+use Throwable;
 
 class AbstractParser implements ItemParser
 {
@@ -83,29 +85,30 @@ class AbstractParser implements ItemParser
     }
 
     /**
-     * TODO: melhorar a verificação de quando precisa processar o parse ou não!
+     * @throws Throwable
      */
     public function read(): void
     {
-        $cache = new PhpFileCache($this->getCachePath());
+        $storage = new FileStorage($this->getCachePath());
+        $cache = new Cache($storage);
 
         $key = 'items';
-        $lifetime = 60 * 60 * 24;
 
-        $data = $cache->fetch($key);
-        if (! $cache->contains($key)) {
+        $data = $cache->load($key, function (&$dependencies) {
+            $dependencies[Cache::CALLBACKS] = [
+                ['file_modified', $this->getFilePath()]
+            ];
+
             $this->parse();
 
-            $data = [
+            return [
                 'items' => $this->items,
                 'categories' => $this->categories
             ];
+        });
 
-            $cache->save($key, $data, $lifetime);
-        } else {
-            $this->items = $data['items'];
-            $this->categories = $data['categories'];
-        }
+        $this->items = $data['items'];
+        $this->categories = $data['categories'];
     }
 
 }

@@ -14,10 +14,10 @@ class Season6 extends AbstractParser
     public function parse(Item $item): void
     {
         $hex = $this->getHex();
-        $item->hex($hex);
+        $item->setHex($hex);
 
-        $item->index(0);
-        $item->section(0);
+        $item->setIndex(0);
+        $item->setSection(0);
 
         $item->setDirty(false);
     }

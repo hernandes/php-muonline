@@ -14,3 +14,10 @@ if (! function_exists('storage_path')) {
         return ROOT . DS . 'storage' . DS . $path;
     }
 }
+
+if (! function_exists('file_modified')) {
+    function file_modified($path = null): bool
+    {
+        return true;
+    }
+}
