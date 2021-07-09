@@ -3,9 +3,11 @@ namespace MuOnline\Item;
 
 use MuOnline\Item\Mastery\Bonus;
 use MuOnline\Item\Mastery\Slot;
+use MuOnline\Util\ItemValueTrait;
 
 class Mastery
 {
+    use ItemValueTrait;
 
     private array $slots = [];
     private Bonus $bonus;

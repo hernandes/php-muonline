@@ -1,11 +1,13 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\ItemValueTrait;
 use MuOnline\Util\StringValueTrait;
 
 class Serial
 {
-    use StringValueTrait;
+    use StringValueTrait,
+        ItemValueTrait;
 
     private ?string $value;
 

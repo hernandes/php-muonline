@@ -1,8 +1,11 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\ItemValueTrait;
+
 class Harmony
 {
+    use ItemValueTrait;
 
     private ?int $type;
     private ?int $level;

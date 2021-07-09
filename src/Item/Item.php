@@ -38,17 +38,17 @@ class Item
         $this->section = $section;
         $this->index = $index;
 
-        $this->luck = new Luck();
-        $this->skill = new Skill();
-        $this->durability = new Durability();
-        $this->excellent = new Excellent();
-        $this->serial = new Serial();
-        $this->ancient = new Ancient();
-        $this->refine = new Refine();
-        $this->harmony = new Harmony();
-        $this->socket = new Socket();
-        $this->mastery = new Mastery();
-        $this->time = new Time();
+        $this->luck = (new Luck())->setItem($this);
+        $this->skill = (new Skill())->setItem($this);
+        $this->durability = (new Durability())->setItem($this);
+        $this->excellent = (new Excellent())->setItem($this);
+        $this->serial = (new Serial())->setItem($this);
+        $this->ancient = (new Ancient())->setItem($this);
+        $this->refine = (new Refine())->setItem($this);
+        $this->harmony = (new Harmony())->setItem($this);
+        $this->socket = (new Socket())->setItem($this);
+        $this->mastery = (new Mastery())->setItem($this);
+        $this->time = (new Time())->setItem($this);
     }
 
     public function setHex(string $hex): self
@@ -205,7 +205,7 @@ class Item
 
     public function setDurability(Durability $durability): self
     {
-        $this->durability = $durability;
+        $this->durability = $durability->setItem($this);
 
         return $this;
     }
@@ -298,7 +298,7 @@ class Item
 
     public function setRefine(Refine $refine): self
     {
-        $this->refine = $refine;
+        $this->refine = $refine->setItem($this);
 
         return $this;
     }
@@ -341,7 +341,7 @@ class Item
 
     public function setMastery(Mastery $mastery): self
     {
-        $this->mastery = $mastery;
+        $this->mastery = $mastery->setItem($this);
 
         return $this;
     }
@@ -369,7 +369,7 @@ class Item
 
     public function setTime(Time $time): self
     {
-        $this->time = $time;
+        $this->time = $time->setItem($this);
 
         return $this;
     }

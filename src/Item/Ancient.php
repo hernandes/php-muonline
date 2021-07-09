@@ -1,8 +1,11 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Util\ItemValueTrait;
+
 class Ancient
 {
+    use ItemValueTrait;
 
     const STAMINA_5 = 5;
     const STAMINA_10 = 10;

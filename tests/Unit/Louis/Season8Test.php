@@ -2,6 +2,6 @@
 
 test('season 8 test', function () {
 
-    expect(true)->toBeTrue();
+    $this->assertTrue(true);
 
 });

@@ -18,6 +18,6 @@ if (! function_exists('storage_path')) {
 if (! function_exists('file_modified')) {
     function file_modified($path = null): bool
     {
-        return true;
+        return false;
     }
 }
