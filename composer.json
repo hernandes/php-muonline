@@ -14,6 +14,6 @@
   "require": {
     "php": ">7.4",
     "ext-dom": "*",
-    "nette/caching": "^3.1"
+    "cache/cache": "^1.0"
   }
 }

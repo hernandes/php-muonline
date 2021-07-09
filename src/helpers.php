@@ -15,9 +15,9 @@ if (! function_exists('storage_path')) {
     }
 }
 
-if (! function_exists('file_modified')) {
-    function file_modified($path = null): bool
+if (! function_exists('file_cache_modified')) {
+    function file_needed_cache(string $cacheFile, string $file): bool
     {
-        return false;
+        return file_exists($cacheFile) && filemtime($file) > filemtime($cacheFile);
     }
 }

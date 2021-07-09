@@ -1,15 +1,17 @@
 <?php
 namespace MuOnline\Item\File\Parser\Item;
 
+use Cache\Adapter\Filesystem\FilesystemCachePool;
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 use MuOnline\Item\File\File;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
 use BadMethodCallException;
-use Nette\Caching\Cache;
-use Nette\Caching\Storages\FileStorage;
+use Phpfastcache\CacheManager;
 use RuntimeException;
 use MuOnline\Item\File\FileNotFoundException;
-use Throwable;
+use Psr\Cache\InvalidArgumentException;
 
 class AbstractParser implements ItemParser
 {
@@ -81,31 +83,31 @@ class AbstractParser implements ItemParser
 
     public function getCachePath(): string
     {
-        return storage_path('muonline' . DS . 'cache' . DS);
+        return storage_path('muonline' . DS);
     }
 
-    /**
-     * @throws Throwable
-     */
     public function read(): void
     {
-        $storage = new FileStorage($this->getCachePath());
-        $cache = new Cache($storage);
-
         $key = 'items';
 
-        $data = $cache->load($key, function (&$dependencies) {
-            $dependencies[Cache::CALLBACKS] = [
-                ['file_modified', $this->getFilePath()]
-            ];
+        $pool = new FilesystemCachePool(new Filesystem(new Local($this->getCachePath())));
+        $item = $pool->getItem($key);
 
+        $cacheFile = $this->getCachePath() . 'cache' . DS . $key;
+
+        if (file_needed_cache($cacheFile, $this->getFilePath()) || ! $item->isHit()) {
             $this->parse();
 
-            return [
+            $data = [
                 'items' => $this->items,
                 'categories' => $this->categories
             ];
-        });
+
+            $item->set($data);
+            $pool->save($item);
+        } else {
+            $data = $item->get();
+        }
 
         $this->items = $data['items'];
         $this->categories = $data['categories'];
