@@ -48,4 +48,11 @@ class Harmony
         return $this;
     }
 
+    public function parse(string $hex): self
+    {
+        $this->add($hex, $hex);
+
+        return $this;
+    }
+
 }

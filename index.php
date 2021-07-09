@@ -19,7 +19,7 @@ $item->setDurability(new \MuOnline\Item\Durability(20))
     ->generateSerial();
 
 $item2 = new \MuOnline\Item\Item();
-$item2->parse('786FFF00275EF5FF00FF');
+$item2->parse('004A14000000AA00000000FFFFFFFFFF');
 
 dump($item2);
 
