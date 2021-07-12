@@ -14,4 +14,9 @@ class Time
         $this->value = $value;
     }
 
+    public function has(): bool
+    {
+        return false;
+    }
+
 }

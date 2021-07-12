@@ -55,4 +55,9 @@ class Harmony
         return $this;
     }
 
+    public function has(): bool
+    {
+        return false;
+    }
+
 }

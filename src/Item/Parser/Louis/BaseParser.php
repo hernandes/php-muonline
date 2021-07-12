@@ -14,7 +14,7 @@ class BaseParser extends AbstractParser
     public function parse(Item $item): void
     {
         $hex = $this->getHex();
-        $item->setHex($hex);
+        $item->setHex(strtoupper($hex));
 
         $index = hexdec(substr($hex, 0, 2));
         $index2 = hexdec(substr($hex,14,2));

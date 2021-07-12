@@ -1,6 +1,8 @@
 <?php
 namespace MuOnline\Item\Socket;
 
+use MuOnline\Team\Team;
+
 class Slot
 {
 
@@ -52,4 +54,15 @@ class Slot
 
         return $this;
     }
+
+    public function get(): int
+    {
+        return 255;
+    }
+
+    public function has(): bool
+    {
+        return $this->get() !== Team::current()->getSocketNoValue();
+    }
+
 }

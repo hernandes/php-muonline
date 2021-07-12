@@ -19,7 +19,7 @@ it('louis season 6 test parse and make hex', function () {
         $item = new Item();
         $item->parse($hex);
 
-        expect($hex)->toBe($item->make());
+        expect($item->getHex())->toBe($item->make());
     }
 
 });

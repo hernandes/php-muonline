@@ -12,7 +12,7 @@
     "pestphp/pest": "^1.9"
   },
   "require": {
-    "php": ">7.4",
+    "php": "~7.4",
     "ext-dom": "*",
     "cache/cache": "^1.0"
   }

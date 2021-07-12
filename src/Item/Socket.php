@@ -3,6 +3,7 @@ namespace MuOnline\Item;
 
 use MuOnline\Item\Socket\Bonus;
 use MuOnline\Item\Socket\Slot;
+use MuOnline\Team\Team;
 use MuOnline\Util\ItemValueTrait;
 
 class Socket
@@ -53,6 +54,16 @@ class Socket
         }
 
         return $this->bonus;
+    }
+
+    public function getNoValue(): int
+    {
+        return Team::current()->getSocketNoValue();
+    }
+
+    public function getEmptyValue(): int
+    {
+        return Team::current()->getSocketEmptyValue();
     }
 
 }

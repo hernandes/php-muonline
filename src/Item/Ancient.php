@@ -58,4 +58,10 @@ class Ancient
 
         return $this;
     }
+
+    public function get(): int
+    {
+        return 0;
+    }
+
 }

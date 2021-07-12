@@ -80,4 +80,14 @@ abstract class AbstractTeam
     {
         return 'Item.txt';
     }
+
+    public function getSocketNoValue(): int
+    {
+        return 255;
+    }
+
+    public function getSocketEmptyValue(): int
+    {
+        return 254;
+    }
 }
