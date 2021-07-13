@@ -63,14 +63,10 @@ class BaseMaker extends AbstractMaker
         } else {
             $hex .= '00';
         }
+
         for ($i = 0; $i < 5; $i++) {
             $socket = $item->getSocketSlot($i);
-
-            if ($socket && $socket->has()) {
-                $hex .= $this->pad(dechex($socket->get()));
-            } else {
-                $hex .= $this->pad(dechex($item->getSocket()->getNoValue()));
-            }
+            $hex .= $this->pad(dechex($socket->get()));
         }
 
         return strtoupper($hex);

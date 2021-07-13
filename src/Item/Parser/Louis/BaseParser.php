@@ -57,14 +57,14 @@ class BaseParser extends AbstractParser
         $refine = in_array(hexdec(substr($hex, 19, 1)), [8, 10]);
         $item->getRefine()->set($refine);
 
-        $harmony = hexdec(substr($hex, 20, 2));
+        $harmony = substr($hex, 20, 2);
         $item->getHarmony()->parse($harmony);
 
-        $item->getSocketSlot(0)->parse(hexdec(substr($hex, 22, 2)));
-        $item->getSocketSlot(1)->parse(hexdec(substr($hex, 24, 2)));
-        $item->getSocketSlot(2)->parse(hexdec(substr($hex, 25, 2)));
-        $item->getSocketSlot(3)->parse(hexdec(substr($hex, 28, 2)));
-        $item->getSocketSlot(4)->parse(hexdec(substr($hex, 30, 2)));
+        $item->getSocketSlot(0)->parse(substr($hex, 22, 2));
+        $item->getSocketSlot(1)->parse(substr($hex, 24, 2));
+        $item->getSocketSlot(2)->parse(substr($hex, 26, 2));
+        $item->getSocketSlot(3)->parse(substr($hex, 28, 2));
+        $item->getSocketSlot(4)->parse(substr($hex, 30, 2));
 
         $bonus = hexdec(substr($hex, 20, 2));
         $item->getSocket()->getBonus()->set($bonus);

@@ -2,29 +2,31 @@
 namespace MuOnline\Item\Socket;
 
 use MuOnline\Team\Team;
+use MuOnline\Util\IntValueTrait;
 
 class Slot
 {
+    use IntValueTrait;
 
-    private ?int $id;
+    private ?int $type;
     private ?int $level;
 
-    public function __construct(?int $id = null, ?int $level = null)
+    public function __construct(?int $type = null, ?int $level = null)
     {
-        $this->id = $id;
+        $this->type = $type;
         $this->level = $level;
     }
 
-    public function setId(int $id) : self
+    public function setType(int $type) : self
     {
-        $this->id = $id;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getId() : int
+    public function getType() : int
     {
-        return $this->id;
+        return $this->type;
     }
 
     public function setLevel(int $level) : self
@@ -39,30 +41,47 @@ class Slot
         return $this->level;
     }
 
-    public function add(?int $id = null, ?int $level = null): self
+    public function add(?int $type = null, ?int $level = null): self
     {
-        $this->id = $id;
+        $this->type = $type;
         $this->level = $level;
 
         return $this;
     }
 
-    public function parse($hex): self
+    public function parse(string $hex): self
     {
-        $this->id = 0;
-        $this->level = 0;
+        $value = hexdec($hex);
+        if ($value === -2) {
+            $value = Team::current()->getSocketNoValue();
+        } else if ($value === -1) {
+            $value = Team::current()->getSocketEmptyValue();
+        }
+
+        $this->set($value);
+
+        if (! in_array($value, [$this->getNoValue(), $this->getEmptyValue()])) {
+            $type = $value % 50;
+            $this->type = $type;
+            $this->level = ($value - $type) / 50;
+        }
 
         return $this;
     }
 
-    public function get(): int
-    {
-        return 255;
-    }
-
     public function has(): bool
     {
-        return $this->get() !== Team::current()->getSocketNoValue();
+        return $this->get() !== $this->getNoValue();
+    }
+
+    public function getNoValue(): int
+    {
+        return Team::current()->getSocketNoValue();
+    }
+
+    public function getEmptyValue(): int
+    {
+        return Team::current()->getSocketEmptyValue();
     }
 
 }

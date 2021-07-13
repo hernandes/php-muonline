@@ -40,7 +40,7 @@ class Harmony
         return $this->level;
     }
 
-    public function add(?int $type = null, ?int $level = null): self
+    public function add(int $type = null, int $level = null): self
     {
         $this->setType($type);
         $this->setLevel($level);
@@ -50,14 +50,18 @@ class Harmony
 
     public function parse(string $hex): self
     {
-        $this->add($hex, $hex);
+        $type = (int) hexdec(substr($hex, 0, 1));
+        $level = (int) hexdec(substr($hex, 1));
+
+        $this->type = $type;
+        $this->level = $level;
 
         return $this;
     }
 
     public function has(): bool
     {
-        return false;
+        return ! in_array($this->getType(), [0, 15]);
     }
 
 }
