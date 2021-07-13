@@ -52,11 +52,6 @@ class Slot
     public function parse(string $hex): self
     {
         $value = hexdec($hex);
-        if ($value === -2) {
-            $value = Team::current()->getSocketNoValue();
-        } else if ($value === -1) {
-            $value = Team::current()->getSocketEmptyValue();
-        }
 
         $this->set($value);
 
