@@ -61,7 +61,7 @@ class Harmony
 
     public function has(): bool
     {
-        return ! in_array($this->getType(), [0, 15]);
+        return $this->type !== null && ! in_array($this->type, [0, 15]);
     }
 
 }

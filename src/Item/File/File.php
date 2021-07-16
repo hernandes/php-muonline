@@ -1,20 +1,21 @@
 <?php
 namespace MuOnline\Item\File;
 
+use Cache\Adapter\Filesystem\FilesystemCachePool;
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem;
 use MuOnline\Team\Team;
 
 class File
 {
 
-    const ITEM = 0;
-
     /**
      * @throws FileNotFoundException
      */
-    public static function path(int $type): string
+    public static function path(string $type): string
     {
-        $fileName = static::translateFileName($type);
         $team = Team::current();
+        $fileName = $team->getFileName($type);
         $base = storage_path('muonline' . DS . 'files' . DS);
 
         $fullPath = $base . $team->getName() . DS . $team->getSeasonClass() . DS . $fileName;
@@ -35,15 +36,14 @@ class File
         throw new FileNotFoundException('File ' . $fileName . ' not found!');
     }
 
-    private static function translateFileName($type): ?string
+    public static function getStoragePath(): string
     {
-        $team = Team::current();
+        return storage_path('muonline' . DS);
+    }
 
-        if ($type === self::ITEM) {
-            return $team->getItemFileName();
-        }
-
-        return null;
+    public static function createCachePool(): FilesystemCachePool
+    {
+        return new FilesystemCachePool(new Filesystem(new Local(static::getStoragePath())));
     }
 
 }

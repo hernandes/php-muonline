@@ -51,14 +51,11 @@ class BaseParser extends AbstractParser
         $serial = substr($this->getHex(), 6, 8);
         $item->getSerial()->set($serial);
 
-        $ancient = hexdec(substr($hex, 17, 1));
+        $ancient = substr($hex, 17, 1);
         $item->getAncient()->parse($ancient);
 
         $refine = in_array(hexdec(substr($hex, 19, 1)), [8, 10]);
         $item->getRefine()->set($refine);
-
-        $harmony = substr($hex, 20, 2);
-        $item->getHarmony()->parse($harmony);
 
         $item->getSocketSlot(0)->parse(substr($hex, 22, 2));
         $item->getSocketSlot(1)->parse(substr($hex, 24, 2));
@@ -66,8 +63,13 @@ class BaseParser extends AbstractParser
         $item->getSocketSlot(3)->parse(substr($hex, 28, 2));
         $item->getSocketSlot(4)->parse(substr($hex, 30, 2));
 
-        $bonus = hexdec(substr($hex, 20, 2));
-        $item->getSocket()->getBonus()->set($bonus);
+        if ($item->getSocket()->exists()) {
+            $bonus = hexdec(substr($hex, 20, 2));
+            $item->getSocket()->getBonus()->set($bonus);
+        } else {
+            $harmony = substr($hex, 20, 2);
+            $item->getHarmony()->parse($harmony);
+        }
 
         $item->setDirty(false);
     }

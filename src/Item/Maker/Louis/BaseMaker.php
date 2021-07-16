@@ -57,11 +57,11 @@ class BaseMaker extends AbstractMaker
         $hex .= dechex($item->getSection());
         $hex .= dechex(($item->getRefine()->has() ? 8 : 0) + ($item->getTime()->has() ? 2 : 0));
 
-        if ($item->getHarmony()->has()) {
+        if ($item->getSocket()->exists()) {
+            $hex .= $this->pad(dechex($item->getSocket()->getBonus()->get()));
+        } else {
             $hex .= dechex($item->getHarmony()->getType());
             $hex .= dechex($item->getHarmony()->getLevel());
-        } else {
-            $hex .= '00';
         }
 
         for ($i = 0; $i < 5; $i++) {

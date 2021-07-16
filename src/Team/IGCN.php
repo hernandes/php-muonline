@@ -9,10 +9,8 @@ class IGCN extends AbstractTeam
         Season::SEASON_6,
         Season::SEASON_16
     ];
-
-    public function getItemFileName(): string
-    {
-        return 'ItemList.xml';
-    }
+    protected array $files = [
+        'items' => 'ItemList.xml'
+    ];
 
 }

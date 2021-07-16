@@ -16,8 +16,14 @@ if (! function_exists('storage_path')) {
 }
 
 if (! function_exists('file_cache_modified')) {
-    function file_needed_cache(string $cacheFile, string $file): bool
+    function file_needed_cache(string $cacheFile, ...$files): bool
     {
-        return file_exists($cacheFile) && filemtime($file) > filemtime($cacheFile);
+        foreach ($files as $file) {
+            if (file_exists($cacheFile) && filemtime($file) > filemtime($cacheFile)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -11,6 +11,11 @@ abstract class AbstractTeam
     protected string $name;
     protected array $seasons = [];
     protected int $season = Season::SEASON_0;
+    protected array $files = [
+        'items' => 'Item.txt',
+        'socket_type' => 'SocketItemType.txt',
+        'socket_option' => 'SocketItemOption.txt'
+    ];
 
     public function __construct(?int $season = null)
     {
@@ -76,9 +81,9 @@ abstract class AbstractTeam
         return $class;
     }
 
-    public function getItemFileName(): string
+    public function getFileName(string $type): ?string
     {
-        return 'Item.txt';
+        return $this->files[$type] ?? null;
     }
 
     public function getSocketNoValue(): int

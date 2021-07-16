@@ -1,14 +1,10 @@
 <?php
 namespace MuOnline\Item\File\Parser\Item;
 
-use Cache\Adapter\Filesystem\FilesystemCachePool;
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem;
 use MuOnline\Item\File\File;
 use MuOnline\Item\File\Parser\Item as ItemParser;
 use MuOnline\Item\Item;
 use BadMethodCallException;
-use Phpfastcache\CacheManager;
 use RuntimeException;
 use MuOnline\Item\File\FileNotFoundException;
 use Psr\Cache\InvalidArgumentException;
@@ -24,6 +20,10 @@ class AbstractParser implements ItemParser
         throw new BadMethodCallException('Method parse not implemented yet!');
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function getItems(): array
     {
         $this->read();
@@ -31,6 +31,10 @@ class AbstractParser implements ItemParser
         return $this->items;
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function getItem(int $section, int $index): ?array
     {
         $items = $this->getItems();
@@ -47,6 +51,10 @@ class AbstractParser implements ItemParser
         return $this->categories;
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function sync(Item $item, bool $durability = false): self
     {
         $section = $item->getSection();
@@ -78,22 +86,21 @@ class AbstractParser implements ItemParser
      */
     public function getFilePath(): string
     {
-        return File::path(File::ITEM);
+        return File::path('items');
     }
 
-    public function getCachePath(): string
-    {
-        return storage_path('muonline' . DS);
-    }
-
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function read(): void
     {
         $key = 'items';
 
-        $pool = new FilesystemCachePool(new Filesystem(new Local($this->getCachePath())));
+        $pool = File::createCachePool();
         $item = $pool->getItem($key);
 
-        $cacheFile = $this->getCachePath() . 'cache' . DS . $key;
+        $cacheFile = File::getStoragePath() . 'cache' . DS . $key;
 
         if (file_needed_cache($cacheFile, $this->getFilePath()) || ! $item->isHit()) {
             $this->parse();

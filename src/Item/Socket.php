@@ -40,6 +40,11 @@ class Socket
         return $slot;
     }
 
+    public function exists(): bool
+    {
+        return $this->has();
+    }
+
     public function setBonus(Bonus $bonus): self
     {
         $this->bonus = $bonus;
@@ -54,6 +59,17 @@ class Socket
         }
 
         return $this->bonus;
+    }
+
+    public function has(): bool
+    {
+        foreach ($this->slots as $slot) {
+            if ($slot->has()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function getNoValue(): int
