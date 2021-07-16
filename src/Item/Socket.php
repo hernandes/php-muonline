@@ -4,7 +4,6 @@ namespace MuOnline\Item;
 use MuOnline\Item\File\Parser\Socket\ParserFactory;
 use MuOnline\Item\Socket\Bonus;
 use MuOnline\Item\Socket\Slot;
-use MuOnline\Team\Team;
 use MuOnline\Util\ItemValueTrait;
 use MuOnline\Item\File\FileNotFoundException;
 use Psr\Cache\InvalidArgumentException;
@@ -43,6 +42,22 @@ class Socket
         return $slot;
     }
 
+    public function setBonus(Bonus $bonus): self
+    {
+        $this->bonus = $bonus;
+
+        return $this;
+    }
+
+    public function getBonus(): Bonus
+    {
+        if (! $this->bonus) {
+            $this->setBonus(new Bonus());
+        }
+
+        return $this->bonus;
+    }
+
     /**
      * @throws FileNotFoundException
      * @throws InvalidArgumentException
@@ -65,20 +80,28 @@ class Socket
         return $parser->getItem($this->getItem()->getSection(), $this->getItem()->getIndex()) !== null;
     }
 
-    public function setBonus(Bonus $bonus): self
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
+    public function available(): array
     {
-        $this->bonus = $bonus;
+        $data = [];
 
-        return $this;
-    }
-
-    public function getBonus(): Bonus
-    {
-        if (! $this->bonus) {
-            $this->setBonus(new Bonus());
+        if ($this->getItem()->getSection() <= 5) {
+            $allow = [1, 3, 5];
+        } else {
+            $allow = [2, 4, 6];
         }
 
-        return $this->bonus;
+        foreach (static::all() as $socket) {
+            if (in_array($socket['element'], $allow)) {
+                $type = $socket['type'];
+                $data[$type][] = $socket;
+            }
+        }
+
+        return $data;
     }
 
     public function has(): bool
@@ -90,16 +113,6 @@ class Socket
         }
 
         return false;
-    }
-
-    public function getNoValue(): int
-    {
-        return Team::current()->getSocketNoValue();
-    }
-
-    public function getEmptyValue(): int
-    {
-        return Team::current()->getSocketEmptyValue();
     }
 
 }

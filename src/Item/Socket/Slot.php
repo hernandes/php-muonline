@@ -1,8 +1,11 @@
 <?php
 namespace MuOnline\Item\Socket;
 
+use MuOnline\Item\File\FileNotFoundException;
+use MuOnline\Item\Socket;
 use MuOnline\Team\Team;
 use MuOnline\Util\IntValueTrait;
+use Psr\Cache\InvalidArgumentException;
 
 class Slot
 {
@@ -77,6 +80,22 @@ class Slot
     public function getEmptyValue(): int
     {
         return Team::current()->getSocketEmptyValue();
+    }
+
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
+    public function getName()
+    {
+        $sockets = Socket::all();
+        foreach ($sockets as $socket) {
+            if ($this->get() === $socket['value']) {
+                return $socket['name'];
+            }
+        }
+
+        return '';
     }
 
 }
