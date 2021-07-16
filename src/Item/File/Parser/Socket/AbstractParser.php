@@ -12,6 +12,7 @@ class AbstractParser implements ItemParser
 
     protected array $sockets = [];
     protected array $bonuses = [];
+    protected array $items = [];
 
     public function parse(): void
     {
@@ -33,21 +34,39 @@ class AbstractParser implements ItemParser
      * @throws FileNotFoundException
      * @throws InvalidArgumentException
      */
-    public function getSocket(int $section, int $index): ?array
+    public function getBonuses(): array
     {
-        $sockets = $this->getSockets();
+        $this->read();
+
+        return $this->bonuses;
+    }
+
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
+    public function getItems(): array
+    {
+        $this->read();
+
+        return $this->items;
+    }
+
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
+    public function getItem(int $section, int $index): ?array
+    {
+        $items = $this->getItems();
 
         if ($section !== null && $index !== null) {
-            return $sockets[$section][$index] ?? null;
+            return $items[$section][$index] ?? null;
         }
 
         return null;
     }
 
-    public function getBonuses(): array
-    {
-        return $this->bonuses;
-    }
 
     /**
      * @throws InvalidArgumentException
@@ -67,7 +86,8 @@ class AbstractParser implements ItemParser
 
             $data = [
                 'sockets' => $this->sockets,
-                'bonuses' => $this->bonuses
+                'bonuses' => $this->bonuses,
+                'items' => $this->items
             ];
 
             $item->set($data);
@@ -78,6 +98,7 @@ class AbstractParser implements ItemParser
 
         $this->sockets = $data['sockets'];
         $this->bonuses = $data['bonuses'];
+        $this->items = $data['items'];
     }
 
 }

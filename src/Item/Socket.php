@@ -1,10 +1,13 @@
 <?php
 namespace MuOnline\Item;
 
+use MuOnline\Item\File\Parser\Socket\ParserFactory;
 use MuOnline\Item\Socket\Bonus;
 use MuOnline\Item\Socket\Slot;
 use MuOnline\Team\Team;
 use MuOnline\Util\ItemValueTrait;
+use MuOnline\Item\File\FileNotFoundException;
+use Psr\Cache\InvalidArgumentException;
 
 class Socket
 {
@@ -40,9 +43,26 @@ class Socket
         return $slot;
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
+    public static function all(): array
+    {
+        $parser = ParserFactory::factory();
+
+        return $parser->getSockets();
+    }
+
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function exists(): bool
     {
-        return $this->has();
+        $parser = ParserFactory::factory();
+
+        return $parser->getItem($this->getItem()->getSection(), $this->getItem()->getIndex()) !== null;
     }
 
     public function setBonus(Bonus $bonus): self

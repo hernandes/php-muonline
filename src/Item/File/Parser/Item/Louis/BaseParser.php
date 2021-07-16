@@ -1,6 +1,7 @@
 <?php
 namespace MuOnline\Item\File\Parser\Item\Louis;
 
+use MuOnline\Item\File\File;
 use MuOnline\Item\File\FileNotFoundException;
 use MuOnline\Item\File\Parser\Item\AbstractParser;
 
@@ -31,49 +32,23 @@ abstract class BaseParser extends AbstractParser
      */
     public function parse(): void
     {
-        $file = $this->getFilePath();
+        $filename = $this->getFilePath();
+        $categories = File::parse($filename, '*');
 
-        if (! $file = fopen($file, 'rb+')) {
-            throw new FileNotFoundException('Was not possible to open the file, verify that the file has permissions');
-        }
+        foreach ($categories as $section => $category) {
+            foreach ($category as $line) {
+                $data = [
+                    'type' => $line[0],
+                    'name' => $line[8],
+                    'width' => $line[3],
+                    'height' => $line[4],
+                    'id' => $line[0],
+                    'skill' => 0,
+                    'slot' => $line[1],
+                    'durability' => 0
+                ];
 
-        $section = -1;
-        while (! feof($file)) {
-            $line = trim(fgets($file), " \t\r\n");
-
-            if (substr($line, 0, 2) === '//' || substr($line, 0, 2) === '#' || $line === '') {
-                continue;
-            }
-
-            if (($pos = strpos($line, '//')) !== false) {
-                $line = substr($line, 0, $pos);
-            }
-            $line = trim($line, " \t\r\n");
-
-            if ($section === -1) {
-                if (is_numeric($line)) {
-                    $section = (int) $line;
-                }
-            } else {
-                if (strtolower($line) == 'end') {
-                    $section = -1;
-                    continue;
-                } else {
-                    $columns = preg_split("/[\s,]*\"([^\"]+)\"[\s,]*|[\s,]*'([^']+)'[\s,]*|[\s,]+/", $line, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-
-                    $data = [
-                        'type' => $columns[0],
-                        'name' => $columns[8],
-                        'width' => $columns[3],
-                        'height' => $columns[4],
-                        'id' => $columns[0],
-                        'skill' => 0,
-                        'slot' => $columns[1],
-                        'durability' => 0
-                    ];
-
-                    $this->items[$section][$columns[0]] = $data;
-                }
+                $this->items[$section][$line[0]] = $data;
             }
         }
     }
