@@ -2,12 +2,12 @@
 namespace MuOnline\Item\File\Parser\Socket;
 
 use MuOnline\Item\File\File;
-use MuOnline\Item\File\Parser\Item as ItemParser;
+use MuOnline\Item\File\Parser\SocketParser;
 use BadMethodCallException;
 use Psr\Cache\InvalidArgumentException;
 use MuOnline\Item\File\FileNotFoundException;
 
-class AbstractParser implements ItemParser
+class AbstractParser implements SocketParser
 {
 
     protected array $sockets = [];

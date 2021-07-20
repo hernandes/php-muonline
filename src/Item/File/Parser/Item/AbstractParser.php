@@ -2,7 +2,7 @@
 namespace MuOnline\Item\File\Parser\Item;
 
 use MuOnline\Item\File\File;
-use MuOnline\Item\File\Parser\Item as ItemParser;
+use MuOnline\Item\File\Parser\ItemParser;
 use MuOnline\Item\Item;
 use BadMethodCallException;
 use RuntimeException;
@@ -46,8 +46,14 @@ class AbstractParser implements ItemParser
         return null;
     }
 
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function getCategories(): array
     {
+        $this->read();
+
         return $this->categories;
     }
 
