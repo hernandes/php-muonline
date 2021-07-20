@@ -3,10 +3,16 @@ namespace MuOnline\Item\Maker\Louis;
 
 use MuOnline\Item\Item;
 use MuOnline\Item\Maker\AbstractMaker;
+use MuOnline\Item\File\FileNotFoundException;
+use Psr\Cache\InvalidArgumentException;
 
 class BaseMaker extends AbstractMaker
 {
 
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function make(Item $item): string
     {
         if ($item->getIndex() === null || $item->getSection() === null) {
@@ -71,4 +77,5 @@ class BaseMaker extends AbstractMaker
 
         return strtoupper($hex);
     }
+
 }

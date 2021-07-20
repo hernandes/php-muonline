@@ -3,10 +3,16 @@ namespace MuOnline\Item\Parser\Louis;
 
 use MuOnline\Item\Item;
 use MuOnline\Item\Parser\AbstractParser;
+use MuOnline\Item\File\FileNotFoundException;
+use Psr\Cache\InvalidArgumentException;
 
 class BaseParser extends AbstractParser
 {
 
+    /**
+     * @throws FileNotFoundException
+     * @throws InvalidArgumentException
+     */
     public function parse(Item $item): void
     {
         $hex = $this->getHex();
@@ -50,8 +56,12 @@ class BaseParser extends AbstractParser
         $ancient = substr($hex, 17, 1);
         $item->getAncient()->parse($ancient);
 
-        $refine = in_array(hexdec(substr($hex, 19, 1)), [8, 10]);
+        $tmp = hexdec(substr($hex, 19, 1));
+        $refine = in_array($tmp, [8, 10]);
         $item->getRefine()->set($refine);
+
+        $time = in_array($tmp, [2, 10]);
+        $item->getTime()->set($time);
 
         $item->getSocketSlot(0)->parse(substr($hex, 22, 2));
         $item->getSocketSlot(1)->parse(substr($hex, 24, 2));
