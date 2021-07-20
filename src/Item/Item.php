@@ -40,6 +40,10 @@ class Item
         $this->section = $section;
         $this->index = $index;
 
+        if ($section !== null || $index !== null) {
+            $this->itsDirty();
+        }
+
         $this->luck = (new Luck())->attachItem($this);
         $this->skill = (new Skill())->attachItem($this);
         $this->durability = (new Durability())->attachItem($this);

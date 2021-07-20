@@ -35,7 +35,7 @@ class Ancient
         return $this;
     }
 
-    public function getTier(): int
+    public function getTier(): ?int
     {
         return $this->tier;
     }

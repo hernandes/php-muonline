@@ -4,7 +4,7 @@ namespace MuOnline\Util;
 trait IntValueTrait
 {
 
-    private ?int $value;
+    private ?int $value = null;
 
     public function set(?int $value): self
     {
