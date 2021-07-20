@@ -14,7 +14,11 @@ trait DirtyTrait
 
     public function addDirty($old = null, $new = null): self
     {
-        $this->setDirty($old !== $new);
+        if ($old === null && $new === null) {
+            $this->itsDirty();
+        } else {
+            $this->setDirty($old !== $new);
+        }
 
         return $this;
     }
@@ -22,6 +26,16 @@ trait DirtyTrait
     public function isDirty(): bool
     {
         return $this->dirty;
+    }
+
+    public function itsDirty(): self
+    {
+        return $this->setDirty(true);
+    }
+
+    public function itsNotDirty(): self
+    {
+        return $this->setDirty(false);
     }
 
 }

@@ -11,7 +11,6 @@ trait ItemValueTrait
     public function setItem(Item $item): self
     {
         $this->item = $item;
-        $this->item->addDirty();
 
         return $this;
     }

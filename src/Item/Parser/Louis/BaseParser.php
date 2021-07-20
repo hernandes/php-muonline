@@ -7,10 +7,6 @@ use MuOnline\Item\Parser\AbstractParser;
 class BaseParser extends AbstractParser
 {
 
-    /**
-     * @param Item $item
-     * @return void
-     */
     public function parse(Item $item): void
     {
         $hex = $this->getHex();
@@ -71,7 +67,7 @@ class BaseParser extends AbstractParser
             $item->getHarmony()->parse($harmony);
         }
 
-        $item->setDirty(false);
+        $item->itsNotDirty();
     }
 
     private function parseOption(string $hex): int

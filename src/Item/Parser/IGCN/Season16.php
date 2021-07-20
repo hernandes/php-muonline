@@ -12,7 +12,7 @@ class Season16 extends AbstractParser
         $hex = $this->getHex();
         $item->setHex($hex);
 
-        $item->setDirty(false);
+        $item->itsNotDirty();
     }
 
 }

@@ -7,24 +7,14 @@ use BadMethodCallException;
 
 abstract class AbstractParser implements Parser
 {
-    /**
-     * @var string
-     */
-    private $hex;
 
-    /**
-     * AbstractParser constructor.
-     * @param null $hex
-     */
-    public function __construct($hex = null)
+    private ?string $hex;
+
+    public function __construct(?string $hex = null)
     {
         $this->hex = $hex;
     }
 
-    /**
-     * @param string $hex
-     * @return $this
-     */
     public function setHex(string $hex): self
     {
         $this->hex = $hex;
@@ -32,18 +22,11 @@ abstract class AbstractParser implements Parser
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getHex(): ?string
     {
         return $this->hex;
     }
 
-    /**
-     * @param Item $item
-     * @return mixed|void
-     */
     public function parse(Item $item): void
     {
         throw new BadMethodCallException('Method parse not implemented yet!');
