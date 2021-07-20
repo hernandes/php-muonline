@@ -40,17 +40,17 @@ class Item
         $this->section = $section;
         $this->index = $index;
 
-        $this->luck = (new Luck())->setItem($this);
-        $this->skill = (new Skill())->setItem($this);
-        $this->durability = (new Durability())->setItem($this);
-        $this->excellent = (new Excellent())->setItem($this);
-        $this->serial = (new Serial())->setItem($this);
-        $this->ancient = (new Ancient())->setItem($this);
-        $this->refine = (new Refine())->setItem($this);
-        $this->harmony = (new Harmony())->setItem($this);
-        $this->socket = (new Socket())->setItem($this);
-        $this->mastery = (new Mastery())->setItem($this);
-        $this->time = (new Time())->setItem($this);
+        $this->luck = (new Luck())->attachItem($this);
+        $this->skill = (new Skill())->attachItem($this);
+        $this->durability = (new Durability())->attachItem($this);
+        $this->excellent = (new Excellent())->attachItem($this);
+        $this->serial = (new Serial())->attachItem($this);
+        $this->ancient = (new Ancient())->attachItem($this);
+        $this->refine = (new Refine())->attachItem($this);
+        $this->harmony = (new Harmony())->attachItem($this);
+        $this->socket = (new Socket())->attachItem($this);
+        $this->mastery = (new Mastery())->attachItem($this);
+        $this->time = (new Time())->attachItem($this);
     }
 
     public function setHex(string $hex): self
@@ -170,7 +170,7 @@ class Item
     public function setLuck(Luck $luck): self
     {
         $this->addDirty($this->luck->has(), $luck->has());
-        $this->luck = $luck->setItem($this);
+        $this->luck = $luck->attachItem($this);
 
         return $this;
     }
@@ -191,7 +191,7 @@ class Item
     public function setSkill(Skill $skill): self
     {
         $this->addDirty($this->skill->has(), $skill->has());
-        $this->skill = $skill->setItem($this);
+        $this->skill = $skill->attachItem($this);
 
         return $this;
     }
@@ -212,7 +212,7 @@ class Item
     public function setDurability(Durability $durability): self
     {
         $this->addDirty($this->durability->get(), $durability->get());
-        $this->durability = $durability->setItem($this);
+        $this->durability = $durability->attachItem($this);
 
         return $this;
     }
@@ -225,7 +225,7 @@ class Item
     public function setAncient(Ancient $ancient): self
     {
         $this->addDirty($this->ancient->get(), $ancient->get());
-        $this->ancient = $ancient->setItem($this);
+        $this->ancient = $ancient->attachItem($this);
 
         return $this;
     }
@@ -249,7 +249,7 @@ class Item
     public function setSerial(Serial $serial): self
     {
         $this->addDirty($this->serial->get(), $serial->get());
-        $this->serial = $serial->setItem($this);
+        $this->serial = $serial->attachItem($this);
 
         return $this;
     }
@@ -270,7 +270,7 @@ class Item
     public function setExcellent(Excellent $excellent): self
     {
         // TODO: dirty implementation
-        $this->excellent = $excellent->setItem($this);
+        $this->excellent = $excellent->attachItem($this);
 
         return $this;
     }
@@ -299,7 +299,7 @@ class Item
             [$this->harmony->getType(), $this->harmony->getLevel()],
             [$harmony->getType(), $harmony->getLevel()]
         );
-        $this->harmony = $harmony->setItem($this);
+        $this->harmony = $harmony->attachItem($this);
 
         return $this;
     }
@@ -323,7 +323,7 @@ class Item
     public function setRefine(Refine $refine): self
     {
         $this->addDirty($this->refine->has(), $refine->has());
-        $this->refine = $refine->setItem($this);
+        $this->refine = $refine->attachItem($this);
 
         return $this;
     }
@@ -344,7 +344,7 @@ class Item
     public function setSocket(Socket $socket): self
     {
         // TODO: dirty implementation
-        $this->socket = $socket->setItem($this);
+        $this->socket = $socket->attachItem($this);
 
         return $this;
     }
@@ -370,7 +370,7 @@ class Item
     public function setMastery(Mastery $mastery): self
     {
         // TODO: dirty implementation
-        $this->mastery = $mastery->setItem($this);
+        $this->mastery = $mastery->attachItem($this);
 
         return $this;
     }
@@ -396,7 +396,7 @@ class Item
     public function setTime(Time $time): self
     {
         $this->addDirty($this->time->get(), $time->get());
-        $this->time = $time->setItem($this);
+        $this->time = $time->attachItem($this);
 
         return $this;
     }
